@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body {
+            background-image: url('https://upload.wikimedia.org/wikipedia/commons/e/e7/%D7%9E%D7%95%D7%A1%D7%93_%D7%97%D7%99%D7%A0%D7%95%D7%9B%D7%99_%D7%9E%D7%91%D7%95%D7%90%D7%95%D7%AA_%D7%A2%D7%99%D7%A8%D7%95%D7%9F-_%D7%94%D7%93%D7%A9%D7%90_%D7%94%D7%92%D7%93%D7%95%D7%9C.jpg');
+            background-size: auto;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-attachment: fixed;
+
+            font-family: Arial, sans-serif;
+            color: white;
+            text-shadow: 1px 0 1px #000,
+            0 1px 1px #000,
+            -1px 0 1px #000,
+            0 -1px 1px #000;
+            margin: auto;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            padding: 20px;
+        }
+
+        table {
+
+            max-width: 100%;
+            border-collapse: collapse;
+            margin: 2rem auto;
+            padding: 0 1rem;
+            border: 2px solid white;
+
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: center;
+            border: 1px solid white;
+            font-size: 28px;
+        }
+
+        th {
+            background-color: #333;
+        }
+
+        #sendButton {
+            margin: 0 auto;
+            display: block;
+            background-color: #4285f4;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+    </style>
+</head>
+<body>
+<table>
+    <tr>
+        <th>Название продукта</th>
+        <th>Единицы измерения</th>
+        <th>Количество</th>
+    </tr>
+
+</table>
+
+<script>
+    const tableData = JSON.parse(localStorage.getItem('tableData'));
+    const table = document.querySelector('table');
+
+    if (tableData) {
+        tableData.forEach((item) => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+        <td>${item.productName}</td>
+        <td>${item.unit}</td>
+        <td>${item.quantity}</td>
+      `;
+            table.appendChild(row);
+        });
+    }
+</script>
+
+<button id="sendButton">Send</button>
+<script>
+
+
+</script>
+</body>
+</html>

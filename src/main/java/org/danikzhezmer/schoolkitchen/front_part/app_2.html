@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('https://upload.wikimedia.org/wikipedia/commons/e/e7/%D7%9E%D7%95%D7%A1%D7%93_%D7%97%D7%99%D7%A0%D7%95%D7%9B%D7%99_%D7%9E%D7%91%D7%95%D7%90%D7%95%D7%AA_%D7%A2%D7%99%D7%A8%D7%95%D7%9F-_%D7%94%D7%93%D7%A9%D7%90_%D7%94%D7%92%D7%93%D7%95%D7%9C.jpg');
+            background-size: auto;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        td {
+            text-shadow: 1px 0 1px #000,
+            0 1px 1px #000,
+            -1px 0 1px #000,
+            0 -1px 1px #000;
+            color: #f2f2f2;
+            font-size: 30px;
+            padding: 8px;
+            text-align: center;
+        }
+
+        select {
+
+            height: auto;
+            width: 50px;
+        }
+
+        .unit {
+            font-size: 20px;
+        }
+
+        .counter {
+            display: contents;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .counter button {
+            font-size: 18px;
+            background-color: #f2f2f2;
+            border: none;
+            cursor: pointer;
+        }
+        #nextButton {
+            margin: 0 auto;
+            display: block;
+            background-color: #4285f4;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+
+
+        }
+    </style>
+</head>
+<body>
+<table>
+    <tr>
+        <td>Фрукты</td>
+        <td>
+            <select class="unit">
+                <option value="кг">кг</option>
+                <option value="шт">шт</option>
+                <option value="л">л</option>
+            </select>
+        </td>
+        <td>
+            <div class="counter">
+                <button class="decrement">-</button>
+                <span class="quantity">0</span>
+                <button class="increment">+</button>
+            </div>
+        </td>
+    </tr><tr>
+        <td>Овощи</td>
+        <td>
+            <select class="unit">
+                <option value="кг">кг</option>
+                <option value="шт">шт</option>
+                <option value="л">л</option>
+            </select>
+        </td>
+        <td>
+            <div class="counter">
+                <button class="decrement">-</button>
+                <span class="quantity">0</span>
+                <button class="increment">+</button>
+            </div>
+        </td>
+    </tr><tr>
+        <td>Молоко</td>
+        <td>
+            <select class="unit">
+                <option value="кг">кг</option>
+                <option value="шт">шт</option>
+                <option value="л">л</option>
+            </select>
+        </td>
+        <td>
+            <div class="counter">
+                <button class="decrement">-</button>
+                <span class="quantity">0</span>
+                <button class="increment">+</button>
+            </div>
+        </td>
+    </tr><tr>
+        <td>Хлеб</td>
+        <td>
+            <select class="unit">
+                <option value="кг">кг</option>
+                <option value="шт">шт</option>
+                <option value="л">л</option>
+            </select>
+        </td>
+        <td>
+            <div class="counter">
+                <button class="decrement">-</button>
+                <span class="quantity">0</span>
+                <button class="increment">+</button>
+            </div>
+        </td>
+    </tr><tr>
+        <td>Масло</td>
+        <td>
+            <select class="unit">
+                <option value="кг">кг</option>
+                <option value="шт">шт</option>
+                <option value="л">л</option>
+            </select>
+        </td>
+        <td>
+            <div class="counter">
+                <button class="decrement">-</button>
+                <span class="quantity">0</span>
+                <button class="increment">+</button>
+            </div>
+        </td>
+    </tr><tr>
+        <td>Нутелла</td>
+        <td>
+            <select class="unit">
+                <option value="кг">кг</option>
+                <option value="шт">шт</option>
+                <option value="л">л</option>
+            </select>
+        </td>
+        <td>
+            <div class="counter">
+                <button class="decrement">-</button>
+                <span class="quantity">0</span>
+                <button class="increment">+</button>
+            </div>
+        </td>
+    </tr>
+    <!-- Добавьте другие продукты здесь -->
+</table>
+<button id="nextButton">Далее</button>
+<script>
+    const decrementButtons = document.querySelectorAll('.decrement');
+    const incrementButtons = document.querySelectorAll('.increment');
+    const quantitySpans = document.querySelectorAll('.quantity');
+
+    function changeBackground() {
+        if (window.innerWidth < 400 && window.innerHeight < 700) {
+            document.body.style.backgroundImage = "url('https://static.wixstatic.com/media/e3a0a1_ff97b31b4d8446f397769cb71f1d34a4~mv2.jpg/v1/fill/w_420,h_568,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/WhatsApp%20Image%202021-12-26%20at%2011_35_edited.jpg')";
+        } else {
+            document.body.style.backgroundImage = "url('https://upload.wikimedia.org/wikipedia/commons/e/e7/%D7%9E%D7%95%D7%A1%D7%93_%D7%97%D7%99%D7%A0%D7%95%D7%9B%D7%99_%D7%9E%D7%91%D7%95%D7%90%D7%95%D7%AA_%D7%A2%D7%99%D7%A8%D7%95%D7%9F-_%D7%94%D7%93%D7%A9%D7%90_%D7%94%D7%92%D7%93%D7%95%D7%9C.jpg')";
+        }
+    }
+
+    window.addEventListener('resize', changeBackground);
+    window.addEventListener('load', changeBackground);
+
+    decrementButtons.forEach((button, index) => {
+        button.addEventListener('click', () => {
+            const currentValue = parseInt(quantitySpans[index].textContent);
+            if (currentValue > 0) {
+                quantitySpans[index].textContent = currentValue - 1;
+            }
+        });
+    });
+
+    incrementButtons.forEach((button, index) => {
+        button.addEventListener('click', () => {
+            const currentValue = parseInt(quantitySpans[index].textContent);
+            quantitySpans[index].textContent = currentValue + 1;
+        });
+    });
+    const nextButton = document.getElementById('nextButton');
+    nextButton.addEventListener('click', () => {
+        window.location.href = 'app_3.html';
+    });
+</script>
+</body>
+</html>
