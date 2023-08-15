@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+
+</head>
+<body>
+<table>
+    <tr th:each="book : ${books}">
+        <td th:text="${book.title}"></td>
+        <td th:text="${book.author}"></td>
+        <td th:text="${book.id}"></td>
+        <td> <a th:href="${ '/books/' + book.id}" >перейти к книжке</a></td>
+
+    </tr>
+</table>
+</body>
+</html>

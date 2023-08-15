@@ -15,7 +15,7 @@
             display: inherit;
             border: solid black;
             border-radius: 25px;
-            width: 10em;
+            width: 20em;
             margin-left: auto;
             margin-right: auto;
             text-align: center;
@@ -41,10 +41,13 @@
 </head>
 <body>
 <div class="book-info">
-    <h1>Название книги</h1>
+    <h1 th:text="${book.title}"></h1>
 </div>
 <div class="author-info">
-    <h2>Имя автора</h2>
+    <h2 th:text="${book.author}"/>
+</div>
+<div class="button-back">
+    <td> <a th:href="${ '/books'}" >back to list</a></td>
 </div>
 </body>
 </html>
