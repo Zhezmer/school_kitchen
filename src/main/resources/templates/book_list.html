@@ -14,7 +14,9 @@
         <td th:text="${book.id}"></td>
         <td> <a th:href="${ '/books/' + book.id}" >перейти к книжке</a></td>
 
+
     </tr>
 </table>
+<a th:href="${'/books/new_book'}">Add new book</a>
 </body>
 </html>

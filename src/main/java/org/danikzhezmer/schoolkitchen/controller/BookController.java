@@ -4,12 +4,9 @@ import org.danikzhezmer.schoolkitchen.entity.Book;
 import org.danikzhezmer.schoolkitchen.repository.BookRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 @RequestMapping("/books")
@@ -33,5 +30,15 @@ public class BookController {
         List<Book> books = bookRepository.findAll();
         model.addAttribute("books",books);
         return "book_list";
+    }
+    @GetMapping("/new_book")
+    public String newBookForm(Model model){
+        model.addAttribute("book", new Book());
+        return "new_book";
+    }
+    @PostMapping ("/new_book")
+    public String submitForm(@ModelAttribute Book book, Model model){
+        model.addAttribute("book", book);
+        return "book_saved";
     }
 }
