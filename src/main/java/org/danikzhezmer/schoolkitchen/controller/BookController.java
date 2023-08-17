@@ -38,7 +38,10 @@ public class BookController {
     }
     @PostMapping ("/new_book")
     public String submitForm(@ModelAttribute Book book, Model model){
-        model.addAttribute("book", book);
-        return "book_saved";
+        model.addAttribute("new_book", book);
+        bookRepository.saveAndFlush(book);
+        return "redirect:/books";
     }
+
+
 }

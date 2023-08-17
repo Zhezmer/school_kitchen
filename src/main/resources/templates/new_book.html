@@ -6,9 +6,9 @@
 </head>
 <body>
 <h1>Form</h1>
-<form action="#" th:action="@{/new_book}" th:object="${book}" method="post">
+<form action="#" th:action="@{/books/new_book}" th:object="${book}" method="post">
     <p>Id: <input type="text" th:field="*{id}" /></p>
-    <p>author: <input type="text" th:field="*{title}" /></p>
+    <p>author: <input type="text" th:field="*{title}"  /></p>
     <p>title: <input type="text" th:field="*{author}" /></p>
     <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
 </form>
