@@ -41,6 +41,9 @@
 </head>
 <body>
 <div class="book-info">
+    <h4 th:text="${book.id}"></h4>
+</div>
+<div class="book-info">
     <h1 th:text="${book.title}"></h1>
 </div>
 <div class="author-info">
@@ -48,6 +51,9 @@
 </div>
 <div class="button-back">
     <td> <a th:href="${ '/books'}" >back to list</a></td>
+    <td><a th:href="${'/books/new_book'}">Add new book</a></td>
+    <td><a th:href="${'/books/book_update/' + book.id}">update this book</a></td>
+    <td><a th:href="${'/books/delete_book/' + book.id}">delete this book</a></td>
 </div>
 </body>
 </html>
