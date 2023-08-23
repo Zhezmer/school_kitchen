@@ -1,6 +1,7 @@
 package org.danikzhezmer.schoolkitchen.entity;
 
 import jakarta.persistence.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.Instant;
 
@@ -16,17 +17,18 @@ public class KitchenOrder {
     @JoinColumn(name = "group_id", referencedColumnName = "id")
     private SchoolGroup group;
 
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
     private Instant creationDate;
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
     private Instant orderDateTo;
 
-    private String status;
 
     public KitchenOrder(Long id, SchoolGroup group, Instant creationDate, Instant orderDateTo, String status) {
         this.id = id;
         this.group = group;
         this.creationDate = creationDate;
         this.orderDateTo = orderDateTo;
-        this.status = status;
+
     }
 
     public KitchenOrder() {
@@ -64,13 +66,6 @@ public class KitchenOrder {
         this.orderDateTo = orderDateTo;
     }
 
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
 
     @Override
     public String toString() {
@@ -79,7 +74,6 @@ public class KitchenOrder {
                 ", group=" + group +
                 ", creationDate=" + creationDate +
                 ", orderDateTo=" + orderDateTo +
-                ", status='" + status + '\'' +
                 '}';
     }
 }

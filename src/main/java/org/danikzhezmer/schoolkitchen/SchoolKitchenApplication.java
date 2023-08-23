@@ -26,18 +26,18 @@ public class SchoolKitchenApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        SchoolGroup group1 = new SchoolGroup(null, "group1");
-        SchoolGroup group2 = new SchoolGroup(null, "group2");
-
-        SchoolGroup saved_group = schoolGroupRepository.save(group1);
-        schoolGroupRepository.save(group2);
-
-        KitchenOrder order = new KitchenOrder();
-        order.setGroup(saved_group);
-        order.setStatus("in process");
-        order.setCreationDate(Instant.now());
-        order.setOrderDateTo(Instant.now());
-
-        kitchenOrderRepository.save(order);
+//        SchoolGroup group1 = new SchoolGroup(null, "group1");
+//        SchoolGroup group2 = new SchoolGroup(null, "group2");
+//
+//        SchoolGroup saved_group = schoolGroupRepository.save(group1);
+//        schoolGroupRepository.save(group2);
+//
+//        KitchenOrder order = new KitchenOrder();
+//        order.setGroup(saved_group);
+//        order.setStatus("in process");
+//        order.setCreationDate(Instant.now());
+//        order.setOrderDateTo(Instant.now());
+//
+//        kitchenOrderRepository.save(order);
     }
 }

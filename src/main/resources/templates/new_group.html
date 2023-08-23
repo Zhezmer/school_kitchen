@@ -5,7 +5,7 @@
     <title>Title</title>
 </head>
 <body>
-<form method="post" th:action="@{groups/new_group/}" th:object="${group}">
+<form method="post" th:action="@{groups/new_group}" th:object="${group}">
     <h1>Select your group</h1>
     <label>Groups:</label>
     <select th:field="*{name}">

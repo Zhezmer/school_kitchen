@@ -35,6 +35,6 @@ public class SchoolGroupController {
     public String submitForm(@ModelAttribute SchoolGroup group, Model model) {
         model.addAttribute("new_group", group);
         schoolGroupRepository.saveAndFlush(group);
-        return "new_order";
+        return "redirect:/orders/new_order";
     }
 }
