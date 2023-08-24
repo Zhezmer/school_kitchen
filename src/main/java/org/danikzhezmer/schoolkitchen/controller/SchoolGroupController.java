@@ -33,7 +33,7 @@ public class SchoolGroupController {
 
     @PostMapping("/new_group")
     public String submitForm(@ModelAttribute SchoolGroup group, Model model) {
-        model.addAttribute("new_group", group);
+        model.addAttribute("group", group);
         schoolGroupRepository.saveAndFlush(group);
         return "redirect:/orders/new_order";
     }

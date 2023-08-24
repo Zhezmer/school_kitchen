@@ -1,7 +1,6 @@
 package org.danikzhezmer.schoolkitchen.controller;
 
 import org.danikzhezmer.schoolkitchen.entity.KitchenOrder;
-import org.danikzhezmer.schoolkitchen.entity.SchoolGroup;
 import org.danikzhezmer.schoolkitchen.repository.KitchenOrderRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,10 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.time.Instant;
-import java.util.Arrays;
 import java.util.Date;
-import java.util.List;
 
 @Controller
 @RequestMapping("/orders")
@@ -26,9 +22,10 @@ public class KitchenOrderController {
     }
 
     @GetMapping("/new_order")
-    public String newOrderForm(Model model) {
+    public String newOrderForm(Model model ) {
         model.addAttribute("order", new KitchenOrder());
         model.addAttribute("standardDate", new Date());
+
         return "new_order";
     }
 
@@ -36,6 +33,6 @@ public class KitchenOrderController {
     public String submitForm(@ModelAttribute KitchenOrder order, Model model) {
         model.addAttribute("new_order", order);
         kitchenOrderRepository.saveAndFlush(order);
-        return "new_product";
+        return "new_order";
     }
 }

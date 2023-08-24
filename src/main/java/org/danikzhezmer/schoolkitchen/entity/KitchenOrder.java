@@ -55,7 +55,7 @@ public class KitchenOrder {
     }
 
     public void setCreationDate(Instant creationDate) {
-        this.creationDate = creationDate;
+        this.creationDate = Instant.now();
     }
 
     public Instant getOrderDateTo() {

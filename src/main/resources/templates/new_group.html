@@ -5,11 +5,13 @@
     <title>Title</title>
 </head>
 <body>
-<form method="post" th:action="@{groups/new_group}" th:object="${group}">
+<form method="post" th:action="@{/groups/new_group}" th:object="${group}">
     <h1>Select your group</h1>
     <label>Groups:</label>
     <select th:field="*{name}">
-        <option th:each="type : ${listOfGroups}" th:value="${type}" th:text="${type}"></option>
+        <option th:each="name : ${listOfGroups}"
+                th:text="${name}"
+                th:value="${name}"></option>
     </select>
 
     <input type="submit" value="next">

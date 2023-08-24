@@ -6,16 +6,15 @@
 </head>
 <body>
 <h1>New Order</h1>
-<form action="#" th:action="@{orders/new_order}" th:object="${order}" method="post">
-
+<form th:action="@{/orders/new_order}" th:object="${order}" method="post">
 
     <div>
         <label> date today:</label>
-        <p th:text="${#dates.formatISO(standardDate)}"></p>
+        <p th:text="${order.creationDate}"></p>
     </div>
     <div>
         <label> Group:</label>
-        <p th: object="${group.name}"></p>
+        <p th:text ="${}"></p>
     </div>
     <div>
         <label>Order date to</label>
