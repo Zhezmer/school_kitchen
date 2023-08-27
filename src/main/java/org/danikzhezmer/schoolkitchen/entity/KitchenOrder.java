@@ -32,6 +32,7 @@ public class KitchenOrder {
     }
 
     public KitchenOrder() {
+        this.creationDate = Instant.now();
     }
 
     public Long getId() {
@@ -55,7 +56,7 @@ public class KitchenOrder {
     }
 
     public void setCreationDate(Instant creationDate) {
-        this.creationDate = Instant.now();
+        this.creationDate = creationDate;
     }
 
     public Instant getOrderDateTo() {

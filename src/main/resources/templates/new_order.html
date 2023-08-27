@@ -14,7 +14,11 @@
     </div>
     <div>
         <label> Group:</label>
-        <p th:text ="${}"></p>
+        <select th:field="*{groupName}">
+            <option th:each="name : ${listOfGroups}"
+                    th:text="${name}"
+                    th:value="${name}"></option>
+        </select>
     </div>
     <div>
         <label>Order date to</label>
