@@ -8,11 +8,11 @@
 </head>
 <body>
 <table>
-    <tr th:each="product : ${product}">
-        <td th:text="${product.name}"></td>
-        <td th:text="${}"></td>
-
+    <tr th:each="product : ${products}">
+        <td th:text="${product.productName}"></td>
+        <td> <a th:href="${ '/products/' + product.productId}" >to product</a></td>
     </tr>
+
 </table>
 
 </body>

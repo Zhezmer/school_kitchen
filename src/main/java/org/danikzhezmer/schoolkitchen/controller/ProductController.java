@@ -1,13 +1,13 @@
 package org.danikzhezmer.schoolkitchen.controller;
 
 import org.danikzhezmer.schoolkitchen.entity.Product;
+import org.danikzhezmer.schoolkitchen.entity.SchoolGroup;
 import org.danikzhezmer.schoolkitchen.repository.ProductRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 
 @Controller
@@ -20,6 +20,19 @@ public class ProductController {
         this.productRepository = productRepository;
     }
 
+    @GetMapping("/{id}")
+    public String getproduct(@PathVariable("id") Long id, Model model) {
+        Product product = productRepository.findById(id).orElse(null);
+        model.addAttribute("product", product);
+        return "/product/product_card";
+    }
+
+    @GetMapping
+    public String getProductList(Model model) {
+        List<Product> products = productRepository.findAll();
+        model.addAttribute("products", products);
+        return "product/product_list";
+    }
     @GetMapping("/new_product")
     public String newProductForm(Model model) {
         model.addAttribute("product", new Product());
