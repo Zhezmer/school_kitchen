@@ -2,7 +2,9 @@ drop table if exists school_group;
 create table if not exists school_group
 (
     id   serial primary key,
-    name varchar(25) not null
+    name varchar(25) not null,
+    UNIQUE (name)
+
 
 );
 
@@ -24,11 +26,11 @@ create table if not exists product
     id   serial primary key,
     name varchar(25) not null
 );
-drop table if exists order_product;
-create table if not exists order_product
+drop table if exists kitchen_order_product;
+create table if not exists kitchen_order_product
 (
     id              serial primary key,
-    order_id        int         not null,
+    kitchen_order_id        int         not null,
     product_id      int         not null,
     quantity        int         not null,
     unit_of_measure varchar(25) not null,
@@ -36,7 +38,7 @@ create table if not exists order_product
         FOREIGN KEY (product_id)
             REFERENCES product (id),
     CONSTRAINT fk_order
-        FOREIGN KEY (order_id)
+        FOREIGN KEY (kitchen_order_id)
             REFERENCES kitchen_order (id)
 
 );

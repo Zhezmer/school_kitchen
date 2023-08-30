@@ -3,7 +3,8 @@ package org.danikzhezmer.schoolkitchen.entity;
 import jakarta.persistence.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import java.time.Instant;
+import java.time.LocalDate;
+
 
 @Entity
 @Table(name = "kitchen_order")
@@ -18,12 +19,12 @@ public class KitchenOrder {
     private SchoolGroup group;
 
     @DateTimeFormat(pattern = "dd-MM-yyyy")
-    private Instant creationDate;
+    private LocalDate creationDate;
     @DateTimeFormat(pattern = "dd-MM-yyyy")
-    private Instant orderDateTo;
+    private LocalDate orderDateTo;
 
 
-    public KitchenOrder(Long id, SchoolGroup group, Instant creationDate, Instant orderDateTo, String status) {
+    public KitchenOrder(Long id, SchoolGroup group, LocalDate creationDate, LocalDate orderDateTo) {
         this.id = id;
         this.group = group;
         this.creationDate = creationDate;
@@ -32,7 +33,7 @@ public class KitchenOrder {
     }
 
     public KitchenOrder() {
-        this.creationDate = Instant.now();
+        this.creationDate = LocalDate.now();
     }
 
     public Long getId() {
@@ -51,19 +52,19 @@ public class KitchenOrder {
         this.group = group;
     }
 
-    public Instant getCreationDate() {
+    public LocalDate getCreationDate() {
         return creationDate;
     }
 
-    public void setCreationDate(Instant creationDate) {
+    public void setCreationDate(LocalDate creationDate) {
         this.creationDate = creationDate;
     }
 
-    public Instant getOrderDateTo() {
+    public LocalDate getOrderDateTo() {
         return orderDateTo;
     }
 
-    public void setOrderDateTo(Instant orderDateTo) {
+    public void setOrderDateTo(LocalDate orderDateTo) {
         this.orderDateTo = orderDateTo;
     }
 

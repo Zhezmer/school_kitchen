@@ -6,6 +6,8 @@ import java.time.LocalDate;
 
 public class KitchenOrderDto {
 
+    private Long orderId;
+
     private String groupName;
 
     private LocalDate creationDate;
@@ -16,10 +18,19 @@ public class KitchenOrderDto {
         return groupName;
     }
 
-    public KitchenOrderDto(String groupName, LocalDate creationDate, LocalDate orderDateTo) {
+    public KitchenOrderDto(String groupName, LocalDate creationDate, LocalDate orderDateTo, Long orderId) {
+        this.orderId = orderId;
         this.groupName = groupName;
         this.creationDate = creationDate;
         this.orderDateTo = orderDateTo;
+    }
+
+    public Long getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(Long orderId) {
+        this.orderId = orderId;
     }
 
     public KitchenOrderDto() {

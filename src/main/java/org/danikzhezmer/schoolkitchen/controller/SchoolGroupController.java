@@ -28,13 +28,13 @@ public class SchoolGroupController {
 
         List<String> listOfGroups = Arrays.asList("Group1", "Group2", "Group3");
         model.addAttribute("listOfGroups", listOfGroups);
-        return "new_group";
+        return "group/new_group";
     }
 
     @PostMapping("/new_group")
     public String submitForm(@ModelAttribute SchoolGroup group, Model model) {
         model.addAttribute("group", group);
-        schoolGroupRepository.saveAndFlush(group);
+        schoolGroupRepository.save(group);
         return "redirect:/orders/new_order";
     }
 }
