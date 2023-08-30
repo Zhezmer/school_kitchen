@@ -20,7 +20,7 @@ public class KitchenOrderController {
 
     private final KitchenOrderService kitchenOrderService;
 
-    public KitchenOrderController(KitchenOrderRepository kitchenOrderRepository, KitchenOrderService kitchenOrderService) {
+    public KitchenOrderController(KitchenOrderService kitchenOrderService) {
 
         this.kitchenOrderService = kitchenOrderService;
     }

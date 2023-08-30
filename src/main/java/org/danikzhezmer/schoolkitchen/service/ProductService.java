@@ -7,7 +7,9 @@ import org.danikzhezmer.schoolkitchen.entity.Product;
 import org.danikzhezmer.schoolkitchen.repository.KitchenOrderProductRepository;
 import org.danikzhezmer.schoolkitchen.repository.KitchenOrderRepository;
 import org.danikzhezmer.schoolkitchen.repository.ProductRepository;
+import org.springframework.stereotype.Service;
 
+@Service
 public class ProductService {
     private final KitchenOrderRepository kitchenOrderRepository;
 
@@ -30,6 +32,6 @@ public class ProductService {
         kitchenOrderProduct.setMeasure(kitchenOrderProductDto.getMeasure());
         kitchenOrderProduct.setQty(kitchenOrderProductDto.getQty());
 
-
+        kitchenOrderProductRepository.save(kitchenOrderProduct);
     }
 }

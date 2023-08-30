@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+<form class="form-horizontal" th:action="@{//kitchen_order_products/new_kitchen_order}" th:object="${kitchen_order}" method="post">
+    <input  type="hidden" th:field="*{id}"/>
+    <input  type="hidden" th:field="*{productId}"/>
+    <input  type="hidden" th:field="*{kitchenOrderId}"/>
+    <select class="form-control" th:field="*{productName}">
+        <option value=""></option>
+        <option th:each="name : ${listOfProducts}"
+                th:text="${name}"
+                th:value="${name}"></option>
+    </select>
+    <select class="form-control" th:field="*{measure}">
+        <option value=""></option>
+        <option th:each="name : ${listOfMeasure}"
+                th:text="${name}"
+                th:value="${name}"></option>
+    </select>
+    <div class="quantity">
+        <label>Quantity:</label>
+        <input type="number" class="form-control" th:field="*{qty}" value="1" />
+        <button type="button" class="btn btn-sm btn-primary" onclick="incrementQty()">+</button>
+        <button type="button" class="btn btn-sm btn-primary" onclick="decrementQty()">-</button>
+    </div>
+    <script th:inline="javascript">
+        function incrementQty() {
+            const qtyInput = document.querySelector("#qty");
+            const currentQty = parseInt(qtyInput.value);
+            qtyInput.value = currentQty + 1;
+        }
+
+        function decrementQty() {
+            const qtyInput = document.querySelector("#qty");
+            const currentQty = parseInt(qtyInput.value);
+            if (currentQty > 0) {
+                qtyInput.value = currentQty - 1;
+            }
+        }
+    </script>
+    <p><input class="btn btn-default" type="submit" value="Submit"/> <input type="reset" value="Reset"/></p>
+</form>
+</body>
+</html>

@@ -6,6 +6,11 @@
 
 </head>
 <body>
-
+<form class="form-horizontal" th:action="@{/products/new_product}" th:object="${product}" method="post">
+    <h3>Add new product</h3>
+    <input  type="text" placeholder="id" th:field="*{productId}"/>
+    <input  type="text" placeholder="product name" th:field="*{productName}"/>
+    <input type="submit" value="save">
+</form>
 </body>
 </html>

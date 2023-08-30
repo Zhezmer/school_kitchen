@@ -6,6 +6,8 @@ public class KitchenOrderProductDto {
     private Long kitchenOrderId;
     private Long productId;
 
+    private String productName;
+
     private String measure;
 
     private int qty;
@@ -13,10 +15,11 @@ public class KitchenOrderProductDto {
     public KitchenOrderProductDto() {
     }
 
-    public KitchenOrderProductDto(Long id, Long kitchenOrderId, Long productId, String measure, int qty) {
+    public KitchenOrderProductDto(Long id, Long kitchenOrderId, Long productId, String productName, String measure, int qty) {
         Id = id;
         this.kitchenOrderId = kitchenOrderId;
         this.productId = productId;
+        this.productName = productName;
         this.measure = measure;
         this.qty = qty;
     }
@@ -43,6 +46,14 @@ public class KitchenOrderProductDto {
 
     public void setProductId(Long productId) {
         this.productId = productId;
+    }
+
+    public String getProductName() {
+        return productName;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
     }
 
     public String getMeasure() {
