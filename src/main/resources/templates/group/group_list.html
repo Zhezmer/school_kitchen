@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table>
+    <tr th:each="group : ${groups}">
+        <td th:text="${group.name}"></td>
+
+        <td> <a th:href="${ '/groups/' + group.id}" >to group</a></td>
+
+
+    </tr>
+</table>
+</body>
+</html>
