@@ -24,7 +24,7 @@ public class ProductService {
     }
 
     public void save(KitchenOrderProductDto kitchenOrderProductDto){
-        Product product = productRepository.findByProductId(kitchenOrderProductDto.getProductId());
+        Product product = productRepository.findById(kitchenOrderProductDto.getProductId()).orElseThrow();
         KitchenOrder kitchenOrder = kitchenOrderRepository.findKitchenOrderById(kitchenOrderProductDto.getKitchenOrderId());
         KitchenOrderProduct kitchenOrderProduct = new KitchenOrderProduct();
         kitchenOrderProduct.setKitchenOrder(kitchenOrder);

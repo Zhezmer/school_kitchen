@@ -9,8 +9,8 @@
 <body>
 <table>
     <tr th:each="product : ${products}">
-        <td th:text="${product.productName}"></td>
-        <td> <a th:href="${ '/products/' + product.productId}" >to product</a></td>
+        <td th:text="${product.name}"></td>
+        <td> <a th:href="${ '/products/' + product.id}" >to product</a></td>
     </tr>
 
 </table>

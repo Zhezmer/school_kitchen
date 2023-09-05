@@ -6,13 +6,10 @@
 </head>
 <body>
 <form method="post" th:action="@{/groups/new_group}" th:object="${group}">
-    <h1>Select your group</h1>
-    <label>Groups:</label>
-    <select th:field="*{name}">
-        <option th:each="name : ${listOfGroups}"
-                th:text="${name}"
-                th:value="${name}"></option>
-    </select>
+    <h2>New Group</h2>
+    <input type="hidden" placeholder="id" th:field="*{id}"/>
+    <input type="text" placeholder="name" th:field="*{name}">
+
 
     <input type="submit" value="next">
 </form>

@@ -43,6 +43,6 @@ public class ProductController {
     public String submitForm(@ModelAttribute Product product, Model model) {
         model.addAttribute("product", product);
         productRepository.save(product);
-        return "redirect:/orders/new_order";
+        return "redirect:/products";
     }
 }

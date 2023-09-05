@@ -6,13 +6,28 @@
 </head>
 <body>
 <table>
+    <tr>
+        <th>
+            Group name
+        </th>
+        <th>
+            actions
+        </th>
+    </tr>
     <tr th:each="group : ${groups}">
         <td th:text="${group.name}"></td>
-
-        <td> <a th:href="${ '/groups/' + group.id}" >to group</a></td>
+        <td>
+            <div>
+                <a th:href="${ '/groups/' + group.id}" >to group</a>
+            </div>
+            <div>
+                <a th:href="${ '/groups/' + group.id + '/delete'}" >delete</a>
+            </div>
+        </td>
 
 
     </tr>
 </table>
+
 </body>
 </html>

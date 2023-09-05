@@ -1,9 +1,6 @@
 package org.danikzhezmer.schoolkitchen.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "product")
@@ -11,29 +8,29 @@ public class Product {
 
     @Id
     @GeneratedValue
-    private Long productId;
+    private Long id;
 
-    private String productName;
+    private String name;
 
-    public Long getProductId() {
-        return productId;
+    public Long getId() {
+        return id;
     }
 
-    public void setProductId(Long productId) {
-        this.productId = productId;
+    public void setId(Long productId) {
+        this.id = productId;
     }
 
-    public String getProductName() {
-        return productName;
+    public String getName() {
+        return name;
     }
 
-    public void setProductName(String productName) {
-        this.productName = productName;
+    public void setName(String productName) {
+        this.name = productName;
     }
 
-    public Product(Long productId, String productName) {
-        this.productId = productId;
-        this.productName = productName;
+    public Product(Long id, String name) {
+        this.id = id;
+        this.name = name;
     }
 
     public Product() {

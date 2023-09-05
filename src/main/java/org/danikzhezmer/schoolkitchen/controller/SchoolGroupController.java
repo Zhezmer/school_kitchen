@@ -28,13 +28,13 @@ public class SchoolGroupController {
     }
 
     @GetMapping
-    public String getBookList(Model model) {
+    public String getGroupList(Model model) {
         List<SchoolGroup> groups = schoolGroupRepository.findAll();
         model.addAttribute("groups", groups);
         return "group/group_list";
     }
     @GetMapping("/new_group")
-    public String newProductForm(Model model) {
+    public String newGroupForm(Model model) {
         model.addAttribute("group", new SchoolGroup());
         List<String> listOfGroups = Arrays.asList("Group1", "Group2", "Group3");
         model.addAttribute("listOfGroups", listOfGroups);
@@ -45,6 +45,11 @@ public class SchoolGroupController {
     public String submitForm(@ModelAttribute SchoolGroup group, Model model) {
         model.addAttribute("group", group);
         schoolGroupRepository.save(group);
-        return "redirect:/orders/new_order";
+        return "redirect:/groups";
+    }
+    @GetMapping("/{groupId}/delete")
+    public String deleteGroup(@PathVariable Long groupId) {
+       schoolGroupRepository.deleteById(groupId);
+        return "redirect:/groups";
     }
 }

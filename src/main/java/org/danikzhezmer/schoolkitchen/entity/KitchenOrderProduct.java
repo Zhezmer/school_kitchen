@@ -9,12 +9,12 @@ public class KitchenOrderProduct {
     @Id
     @GeneratedValue
     private Long id;
-    @ManyToOne
-    @JoinColumn(name = "Litchen_order_id", referencedColumnName = "id")
+    @OneToOne
+    @JoinColumn(name = "Kitchen_order_id", referencedColumnName = "id")
     private KitchenOrder kitchenOrder;
 
     @OneToOne
-    @JoinColumn(name = "product_id", referencedColumnName = "productId")
+    @JoinColumn(name = "product_id", referencedColumnName = "id")
     private Product product;
 
     private String measure;
