@@ -3,6 +3,7 @@ package org.danikzhezmer.schoolkitchen.controller;
 import org.danikzhezmer.schoolkitchen.entity.Product;
 import org.danikzhezmer.schoolkitchen.entity.SchoolGroup;
 import org.danikzhezmer.schoolkitchen.repository.ProductRepository;
+import org.danikzhezmer.schoolkitchen.service.ProductService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -14,23 +15,22 @@ import java.util.List;
 @RequestMapping("/products")
 public class ProductController {
 
-   private final ProductRepository productRepository;
+   private final ProductService productService;
 
-    public ProductController(ProductRepository productRepository) {
-        this.productRepository = productRepository;
+    public ProductController(ProductService productService) {
+        this.productService = productService;
     }
 
     @GetMapping("/{id}")
-    public String getproduct(@PathVariable("id") Long id, Model model) {
-        Product product = productRepository.findById(id).orElse(null);
-        model.addAttribute("product", product);
+    public String getProduct(@PathVariable("id") Long id, Model model) {
+
+        model.addAttribute("product", productService.findById(id));
         return "/product/product_card";
     }
 
     @GetMapping
     public String getProductList(Model model) {
-        List<Product> products = productRepository.findAll();
-        model.addAttribute("products", products);
+        model.addAttribute("products", productService.findAll());
         return "product/product_list";
     }
     @GetMapping("/new_product")
@@ -42,7 +42,7 @@ public class ProductController {
     @PostMapping("/new_product")
     public String submitForm(@ModelAttribute Product product, Model model) {
         model.addAttribute("product", product);
-        productRepository.save(product);
+        productService.save(product);
         return "redirect:/products";
     }
 }

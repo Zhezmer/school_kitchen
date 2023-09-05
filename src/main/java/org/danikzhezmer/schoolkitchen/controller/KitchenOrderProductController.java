@@ -1,8 +1,9 @@
 package org.danikzhezmer.schoolkitchen.controller;
 
-import org.danikzhezmer.schoolkitchen.dto.KitchenOrderDto;
+
 import org.danikzhezmer.schoolkitchen.dto.KitchenOrderProductDto;
-import org.danikzhezmer.schoolkitchen.service.ProductService;
+import org.danikzhezmer.schoolkitchen.service.KitchenOrderProductService;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,10 +17,10 @@ import java.util.List;
 @Controller
 @RequestMapping("/kitchen_order_products")
 public class KitchenOrderProductController {
-private final ProductService productService;
+private final KitchenOrderProductService kitchenOrderProductService;
 
-    public KitchenOrderProductController(ProductService productService) {
-        this.productService = productService;
+    public KitchenOrderProductController(KitchenOrderProductService kitchenOrderProductService) {
+        this.kitchenOrderProductService = kitchenOrderProductService;
     }
 
     @GetMapping("/new_kitchen_order")
@@ -35,7 +36,7 @@ private final ProductService productService;
 
     @PostMapping("/new_kitchen_order")
     public String submitForm(@ModelAttribute KitchenOrderProductDto kitchenOrder) {
-       productService.save(kitchenOrder);
+       kitchenOrderProductService.save(kitchenOrder);
         return "redirect:/orders/new_order";
     }
 }

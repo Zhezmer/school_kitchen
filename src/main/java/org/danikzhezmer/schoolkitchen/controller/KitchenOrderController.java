@@ -1,41 +1,41 @@
 package org.danikzhezmer.schoolkitchen.controller;
 
 import org.danikzhezmer.schoolkitchen.dto.KitchenOrderDto;
-import org.danikzhezmer.schoolkitchen.entity.SchoolGroup;
-import org.danikzhezmer.schoolkitchen.repository.SchoolGroupRepository;
+import org.danikzhezmer.schoolkitchen.entity.Product;
 import org.danikzhezmer.schoolkitchen.service.KitchenOrderService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-
+import org.springframework.web.bind.annotation.*;
 import java.util.List;
-import java.util.stream.Collectors;
+
 
 @Controller
 @RequestMapping("/orders")
 public class KitchenOrderController {
 
-
     private final KitchenOrderService kitchenOrderService;
 
-    private final SchoolGroupRepository schoolGroupRepository;
-
-    public KitchenOrderController(KitchenOrderService kitchenOrderService, SchoolGroupRepository schoolGroupRepository) {
-
+    public KitchenOrderController(KitchenOrderService kitchenOrderService) {
         this.kitchenOrderService = kitchenOrderService;
-        this.schoolGroupRepository = schoolGroupRepository;
+    }
+
+    @GetMapping("/{id}")
+    public String getOrder(@PathVariable("id") Long id, Model model) {
+        model.addAttribute("order", kitchenOrderService.findById(id));
+        return "/order/order_card";
+    }
+
+    @GetMapping
+    public String getOrderList(Model model) {
+        model.addAttribute("orders", kitchenOrderService.findAll());
+
+        return "order/order_list";
     }
 
     @GetMapping("/new_order")
     public String newOrderForm(Model model) {
         model.addAttribute("order", new KitchenOrderDto());
-        List<String> listOfGroups = schoolGroupRepository.findAll()
-                .stream()
-                .map(SchoolGroup::getName)
-                .collect(Collectors.toList());
+        List<String> listOfGroups = kitchenOrderService.findAll();
         model.addAttribute("listOfGroups", listOfGroups);
         return "order/new_order";
     }

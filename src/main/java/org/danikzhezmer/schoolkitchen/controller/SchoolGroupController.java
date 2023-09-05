@@ -3,6 +3,7 @@ package org.danikzhezmer.schoolkitchen.controller;
 import org.danikzhezmer.schoolkitchen.entity.Product;
 import org.danikzhezmer.schoolkitchen.entity.SchoolGroup;
 import org.danikzhezmer.schoolkitchen.repository.SchoolGroupRepository;
+import org.danikzhezmer.schoolkitchen.service.SchoolGroupService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -14,23 +15,21 @@ import java.util.List;
 @RequestMapping("groups")
 public class SchoolGroupController {
 
-    SchoolGroupRepository schoolGroupRepository;
+  private final SchoolGroupService schoolGroupService;
 
-    public SchoolGroupController(SchoolGroupRepository schoolGroupRepository) {
-        this.schoolGroupRepository = schoolGroupRepository;
+    public SchoolGroupController(SchoolGroupService schoolGroupService) {
+        this.schoolGroupService = schoolGroupService;
     }
 
     @GetMapping("/{id}")
     public String getGroup(@PathVariable("id") Long id, Model model) {
-        SchoolGroup group = schoolGroupRepository.findById(id).orElse(null);
-        model.addAttribute("group", group);
+        model.addAttribute("group", schoolGroupService.findById(id));
         return "/group/group_card";
     }
 
     @GetMapping
     public String getGroupList(Model model) {
-        List<SchoolGroup> groups = schoolGroupRepository.findAll();
-        model.addAttribute("groups", groups);
+        model.addAttribute("groups", schoolGroupService.findAll());
         return "group/group_list";
     }
     @GetMapping("/new_group")
@@ -44,12 +43,12 @@ public class SchoolGroupController {
     @PostMapping("/new_group")
     public String submitForm(@ModelAttribute SchoolGroup group, Model model) {
         model.addAttribute("group", group);
-        schoolGroupRepository.save(group);
+        schoolGroupService.save(group);
         return "redirect:/groups";
     }
     @GetMapping("/{groupId}/delete")
     public String deleteGroup(@PathVariable Long groupId) {
-       schoolGroupRepository.deleteById(groupId);
+       schoolGroupService.deleteById(groupId);
         return "redirect:/groups";
     }
 }

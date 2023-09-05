@@ -5,6 +5,28 @@
     <title>Title</title>
 </head>
 <body>
+<table>
+    <tr>
+        <th>
+            Order
+        </th>
+        <th>
+            actions
+        </th>
+    </tr>
+    <tr th:each="order : ${orders}">
+        <td th:text="${order}"></td>
+        <td>
+            <div>
+                <a th:href="${ '/orders/' + order}" >to order</a>
+            </div>
+            <div>
+                <a th:href="${ '/orders/' + group.id + '/delete'}" >delete</a>
+            </div>
+        </td>
 
+
+    </tr>
+</table>
 </body>
 </html>
