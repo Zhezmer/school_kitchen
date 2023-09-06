@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table>
+    <tr>
+        <th>
+            Kitchen order number
+        </th>
+        <th>
+            actions
+        </th>
+    </tr>
+    <tr th:each="kitchen_order_product : ${kitchen_order_products}">
+        <td th:text="${kitchen_order_product.id}"></td>
+        <td>
+            <div>
+                <a th:href="${ '/kitchen_order_products/' + kitchen_order_product.id}" >to order</a>
+            </div>
+            <div>
+                <a th:href="${ '/kitchen_order_products/' + kitchen_order_product.id + '/delete'}" >delete</a>
+            </div>
+        </td>
+
+
+    </tr>
+</table>
+</body>
+</html>

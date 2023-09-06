@@ -45,4 +45,10 @@ public class ProductController {
         productService.save(product);
         return "redirect:/products";
     }
+    @GetMapping("/{productId}/delete")
+    public String deleteGroup(@PathVariable Long productId) {
+        productService.deleteById(productId);
+        return "redirect:/products";
+    }
+
 }

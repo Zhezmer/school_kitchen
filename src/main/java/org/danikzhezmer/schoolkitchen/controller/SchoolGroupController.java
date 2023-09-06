@@ -35,8 +35,7 @@ public class SchoolGroupController {
     @GetMapping("/new_group")
     public String newGroupForm(Model model) {
         model.addAttribute("group", new SchoolGroup());
-        List<String> listOfGroups = Arrays.asList("Group1", "Group2", "Group3");
-        model.addAttribute("listOfGroups", listOfGroups);
+        model.addAttribute("listOfGroups", schoolGroupService.findGroup());
         return "group/new_group";
     }
 

@@ -6,15 +6,14 @@
 
 </head>
 <body>
-<form class="form-horizontal" th:action="@{//kitchen_order_products/new_kitchen_order}" th:object="${kitchen_order}" method="post">
+<form class="form-horizontal" th:action="@{/kitchen_order_products/new_kitchen_order_product}" th:object="${kitchen_order}" method="post">
     <input  type="hidden" th:field="*{id}"/>
     <input  type="hidden" th:field="*{productId}"/>
     <input  type="hidden" th:field="*{kitchenOrderId}"/>
     <select class="form-control" th:field="*{productName}">
         <option value=""></option>
-        <option th:each="name : ${listOfProducts}"
-                th:text="${name}"
-                th:value="${name}"></option>
+
+
     </select>
     <select class="form-control" th:field="*{measure}">
         <option value=""></option>

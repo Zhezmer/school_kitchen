@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+  <h3 th:text="${kitchen_order_product.product}"></h3>
+</div>
+<div>
+  <h3 th:text="${kitchen_order_product.measure}"></h3>
+</div>
+<div>
+  <h3 th:text="${kitchen_order_product.qty}"></h3>
+</div>
+<div class="button">
+  <td> <a th:href="${'/kitchen_order_products'}" >back to list</a></td>
+
+</div>
+</body>
+</html>

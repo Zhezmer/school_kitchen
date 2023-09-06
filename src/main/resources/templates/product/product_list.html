@@ -8,12 +8,24 @@
 </head>
 <body>
 <table>
+    <tr>
+        <th>
+            Product name
+        </th>
+        <th>
+            actions
+        </th>
+    </tr>
     <tr th:each="product : ${products}">
         <td th:text="${product.name}"></td>
-        <td> <a th:href="${ '/products/' + product.id}" >to product</a></td>
+        <td>
+            <div>
+                <td>  <a th:href="${ '/products/' + product.id}" > to product </a></td>
+                <td> <a th:href="${ '/products/' + product.id + '/delete'}" >delete</a> </td>
+            </div>
+        </td>
     </tr>
-
 </table>
-
+<a th:href="${'/products/new_product'}">Create new product</a>
 </body>
 </html>

@@ -5,6 +5,7 @@ import org.danikzhezmer.schoolkitchen.repository.SchoolGroupRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class SchoolGroupService {
@@ -28,5 +29,9 @@ public class SchoolGroupService {
 
     public void deleteById(Long id){
         schoolGroupRepository.deleteById(id);
+    }
+
+    public List<String> findGroup(){
+        return schoolGroupRepository.findAll().stream().map(SchoolGroup::getName).collect(Collectors.toList());
     }
 }

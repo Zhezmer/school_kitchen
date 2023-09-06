@@ -4,10 +4,14 @@ import org.danikzhezmer.schoolkitchen.dto.KitchenOrderProductDto;
 import org.danikzhezmer.schoolkitchen.entity.KitchenOrder;
 import org.danikzhezmer.schoolkitchen.entity.KitchenOrderProduct;
 import org.danikzhezmer.schoolkitchen.entity.Product;
+import org.danikzhezmer.schoolkitchen.entity.SchoolGroup;
 import org.danikzhezmer.schoolkitchen.repository.KitchenOrderProductRepository;
 import org.danikzhezmer.schoolkitchen.repository.KitchenOrderRepository;
 import org.danikzhezmer.schoolkitchen.repository.ProductRepository;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class KitchenOrderProductService {
@@ -22,6 +26,13 @@ public class KitchenOrderProductService {
         this.productRepository = productRepository;
         this.kitchenOrderProductRepository = kitchenOrderProductRepository;
     }
+    public List<KitchenOrderProduct> findAll(){
+        return kitchenOrderProductRepository.findAll();
+    }
+
+    public KitchenOrderProduct findById(Long id){
+        return kitchenOrderProductRepository.findById(id).orElse(null);
+    }
 
     public void save(KitchenOrderProductDto kitchenOrderProductDto){
         Product product = productRepository.findById(kitchenOrderProductDto.getProductId()).orElseThrow();
@@ -33,5 +44,9 @@ public class KitchenOrderProductService {
         kitchenOrderProduct.setQty(kitchenOrderProductDto.getQty());
 
         kitchenOrderProductRepository.save(kitchenOrderProduct);
+    }
+
+    public List<Product> findProducts(){
+        return productRepository.findAll();
     }
 }
