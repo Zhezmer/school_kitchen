@@ -14,14 +14,14 @@
             actions
         </th>
     </tr>
-    <tr th:each="kitchen_order_product : ${kitchen_order_products}">
-        <td th:text="${kitchen_order_product.id}"></td>
+    <tr th:each="kitchen_order_item : ${kitchen_order_items}">
+        <td th:text="${kitchen_order_item.id}"></td>
         <td>
             <div>
-                <a th:href="${ '/kitchen_order_products/' + kitchen_order_product.id}" >to order</a>
+                <a th:href="${ '/kitchen_order_products/' + kitchen_order_item.id}" >to order</a>
             </div>
             <div>
-                <a th:href="${ '/kitchen_order_products/' + kitchen_order_product.id + '/delete'}" >delete</a>
+                <a th:href="${ '/kitchen_order_products/' + kitchen_order_item.id + '/delete'}" >delete</a>
             </div>
         </td>
 

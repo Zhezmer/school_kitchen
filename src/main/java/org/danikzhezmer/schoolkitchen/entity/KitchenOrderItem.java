@@ -3,14 +3,14 @@ package org.danikzhezmer.schoolkitchen.entity;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "kitchen_order_product")
-public class KitchenOrderProduct {
+@Table(name = "kitchen_order_item")
+public class KitchenOrderItem {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @ManyToOne
-    @JoinColumn(name = "Kitchen_order_id", referencedColumnName = "id")
+    @JoinColumn(name = "kitchen_order_id", referencedColumnName = "id")
     private KitchenOrder kitchenOrder;
 
     @OneToOne
@@ -22,7 +22,7 @@ public class KitchenOrderProduct {
     private int qty;
 
 
-    public KitchenOrderProduct() {
+    public KitchenOrderItem() {
     }
 
     public Long getId() {
@@ -65,7 +65,7 @@ public class KitchenOrderProduct {
         this.qty = qty;
     }
 
-    public KitchenOrderProduct(Long id, KitchenOrder kitchenOrder, Product product, String measure, int qty) {
+    public KitchenOrderItem(Long id, KitchenOrder kitchenOrder, Product product, String measure, int qty) {
         this.id = id;
         this.kitchenOrder = kitchenOrder;
         this.product = product;

@@ -1,6 +1,6 @@
 package org.danikzhezmer.schoolkitchen.dto;
 
-public class KitchenOrderProductDto {
+public class KitchenOrderItemDto {
 
     private Long Id;
     private Long kitchenOrderId;
@@ -12,10 +12,10 @@ public class KitchenOrderProductDto {
 
     private int qty;
 
-    public KitchenOrderProductDto() {
+    public KitchenOrderItemDto() {
     }
 
-    public KitchenOrderProductDto(Long id, Long kitchenOrderId, Long productId, String productName, String measure, int qty) {
+    public KitchenOrderItemDto(Long id, Long kitchenOrderId, Long productId, String productName, String measure, int qty) {
         Id = id;
         this.kitchenOrderId = kitchenOrderId;
         this.productId = productId;

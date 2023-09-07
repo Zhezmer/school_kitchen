@@ -27,14 +27,14 @@ public class KitchenOrder {
     private LocalDate orderDateTo;
 
     @OneToMany(mappedBy = "kitchenOrder", fetch = FetchType.LAZY)
-    private List<KitchenOrderProduct> kitchenOrderProducts;
+    private List<KitchenOrderItem> kitchenOrderItems;
 
-    public KitchenOrder(Long id, SchoolGroup group, List<KitchenOrderProduct> kitchenOrderProducts, LocalDate creationDate, LocalDate orderDateTo) {
+    public KitchenOrder(Long id, SchoolGroup group, List<KitchenOrderItem> kitchenOrderItems, LocalDate creationDate, LocalDate orderDateTo) {
         this.id = id;
         this.group = group;
         this.creationDate = creationDate;
         this.orderDateTo = orderDateTo;
-        this.kitchenOrderProducts = kitchenOrderProducts;
+        this.kitchenOrderItems = kitchenOrderItems;
 
     }
 
@@ -42,12 +42,12 @@ public class KitchenOrder {
         this.creationDate = LocalDate.now();
     }
 
-    public List<KitchenOrderProduct> getKitchenOrderProducts() {
-        return kitchenOrderProducts;
+    public List<KitchenOrderItem> getKitchenOrderItems() {
+        return kitchenOrderItems;
     }
 
-    public void setKitchenOrderProducts(List<KitchenOrderProduct> kitchenOrderProducts) {
-        this.kitchenOrderProducts = kitchenOrderProducts;
+    public void setKitchenOrderItems(List<KitchenOrderItem> kitchenOrderItems) {
+        this.kitchenOrderItems = kitchenOrderItems;
     }
 
     public Long getId() {
@@ -90,7 +90,7 @@ public class KitchenOrder {
                 ", group=" + group +
                 ", creationDate=" + creationDate +
                 ", orderDateTo=" + orderDateTo +
-                ", kitchenOrderProducts=" + kitchenOrderProducts +
+                ", kitchenOrderItems=" + kitchenOrderItems +
                 '}';
     }
 }
