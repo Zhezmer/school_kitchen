@@ -7,9 +7,9 @@ import jakarta.persistence.*;
 public class KitchenOrderProduct {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "Kitchen_order_id", referencedColumnName = "id")
     private KitchenOrder kitchenOrder;
 

@@ -12,8 +12,9 @@
     <input  type="hidden" th:field="*{kitchenOrderId}"/>
     <select class="form-control" th:field="*{productName}">
         <option value=""></option>
-
-
+        <option th:each="name : ${listOfProducts}"
+                th:text="${name}"
+                th:value="${name}"></option>
     </select>
     <select class="form-control" th:field="*{measure}">
         <option value=""></option>

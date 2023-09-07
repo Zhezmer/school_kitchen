@@ -1,15 +1,12 @@
 package org.danikzhezmer.schoolkitchen;
 
-import org.danikzhezmer.schoolkitchen.entity.KitchenOrder;
-import org.danikzhezmer.schoolkitchen.entity.SchoolGroup;
 import org.danikzhezmer.schoolkitchen.repository.KitchenOrderRepository;
 import org.danikzhezmer.schoolkitchen.repository.SchoolGroupRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-import java.time.Instant;
+import org.springframework.transaction.annotation.Transactional;
 
 @SpringBootApplication
 public class SchoolKitchenApplication implements CommandLineRunner {
@@ -23,7 +20,7 @@ public class SchoolKitchenApplication implements CommandLineRunner {
     public static void main(String[] args) {
         SpringApplication.run(SchoolKitchenApplication.class, args);
     }
-
+    @Transactional
     @Override
     public void run(String... args) throws Exception {
 //        SchoolGroup group1 = new SchoolGroup(null, "group1");

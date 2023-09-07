@@ -33,7 +33,7 @@ private final KitchenOrderProductService kitchenOrderProductService;
         return "kitchen_order_product/kitchen_order_product_list";
     }
 
-    @GetMapping("/new_kitchen_order")
+    @GetMapping("/new_kitchen_order_product")
     public String newKitchenOrderProductForm(Model model) {
         model.addAttribute("kitchen_order", new KitchenOrderProductDto());
         model.addAttribute("listOfProducts", kitchenOrderProductService.findProducts());
@@ -43,7 +43,7 @@ private final KitchenOrderProductService kitchenOrderProductService;
         return "/kitchen_order_product/new_kitchen_order_product";
     }
 
-    @PostMapping("/new_kitchen_order")
+    @PostMapping("/new_kitchen_order_product")
     public String submitForm(@ModelAttribute KitchenOrderProductDto kitchenOrder) {
        kitchenOrderProductService.save(kitchenOrder);
         return "redirect:/orders/new_order";
