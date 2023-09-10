@@ -4,13 +4,49 @@
     <meta charset="UTF-8">
     <title>Title</title>
 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
 </head>
 <body>
-<form class="form-horizontal" th:action="@{/products/new_product}" th:object="${product}" method="post">
-    <h3>Add new product</h3>
-    <input  type="hidden"  th:field="*{id}"/>
-    <input  type="text" placeholder="product name" th:field="*{name}"/>
-    <input type="submit" value="save">
-</form>
+<div class="container">
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Navigation</a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="${'/products'}">Products</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="${'/orders'}">Orders</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="${'/orders/new_order'}">New order</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="row mt-4">
+        <div class="col-md-12">
+            <h1>New Product</h1>
+
+            <div class="card">
+                <div class="card-body">
+                    <form th:action="@{/products/new_product}" th:object="${product}" method="post">
+                        <input type="hidden" th:field="*{id}"/>
+                        <div class="form-group">
+
+                            <input type="text" class="form-control" id="name" placeholder="Product Name" th:field="*{name}"/>
+                        </div>
+                        <button style="margin-top: 10px" class="btn btn-primary" type="submit">Save</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>
