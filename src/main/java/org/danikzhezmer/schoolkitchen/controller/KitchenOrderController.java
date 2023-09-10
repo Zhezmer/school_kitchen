@@ -43,6 +43,6 @@ public class KitchenOrderController {
     @PostMapping("/new_order")
     public String submitForm(@ModelAttribute KitchenOrderDto order) {
         kitchenOrderService.save(order);
-        return "redirect:/kitchen_order_products/new_kitchen_order_product";
+        return "redirect:/kitchen_order_items/new_kitchen_order_item";
     }
 }
