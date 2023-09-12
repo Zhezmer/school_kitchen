@@ -6,10 +6,8 @@ import org.danikzhezmer.schoolkitchen.entity.SchoolGroup;
 import org.danikzhezmer.schoolkitchen.repository.KitchenOrderRepository;
 import org.danikzhezmer.schoolkitchen.repository.SchoolGroupRepository;
 import org.springframework.stereotype.Service;
-
-import java.time.LocalDate;
 import java.util.List;
-import java.util.stream.Collectors;
+
 
 @Service
 public class KitchenOrderService {
@@ -31,14 +29,15 @@ public class KitchenOrderService {
         kitchenOrderRepository.save(kitchenOrder);
     }
 
-    public List<String> findAll(){
-        return schoolGroupRepository.findAll()
-                .stream()
-                .map(SchoolGroup::getName)
-                .collect(Collectors.toList());
+    public List<KitchenOrder> findAll(){
+        return kitchenOrderRepository.findAll();
     }
 
     public KitchenOrder findById(Long id){
         return kitchenOrderRepository.findById(id).orElse(null);
+    }
+
+    public List<KitchenOrder> findKitchenOrderByGroupName(String groupName) {
+        return kitchenOrderRepository.findKitchenOrderByGroupName(groupName);
     }
 }

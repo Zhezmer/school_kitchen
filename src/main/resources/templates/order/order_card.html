@@ -11,20 +11,43 @@
 </head>
 <body>
 <div class="container">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Navigation</a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="${'/products'}">Products</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="${'/orders'}">Orders</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="${'/groups'}">Groups</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
     <h2>Order card</h2>
     <div>
-        <h3 th:text="${order.group}"></h3>
+        <h3 th:text="${order.group.name}"></h3>
     </div>
     <div>
-        <h3 th:text="${order.creationDate}"></h3>
+        <a>Creation date</a>
+        <h3 th:text="${order.creationDate}"> </h3>
     </div>
     <div>
-        <h3 th:text="${order.orderDateTo}"></h3>
+        <a>To execute</a>
+        <h3 th:text="${order.orderDateTo}"> </h3>
     </div>
-    <div class="button">
-        <td> <a th:href="${ '/orders'}" >back to list</a></td>
-
-    </div>
+    <table class="table table-striped">
+        <tbody>
+        <tr th:each="item : ${items}">
+            <td th:text="${item.product.name}"></td>
+            <td th:text="${item.measure}"></td>
+            <td th:text="${item.qty}"></td>
+        </tr>
+        </tbody>
+    </table>
 </div>
 
 </body>

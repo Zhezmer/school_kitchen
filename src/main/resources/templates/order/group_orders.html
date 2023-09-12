@@ -8,7 +8,6 @@
 </head>
 <body>
 <div class="container">
-
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="#">Navigation</a>
         <div class="collapse navbar-collapse">
@@ -25,12 +24,18 @@
             </ul>
         </div>
     </nav>
-    <div>
-        <h3 th:text="${product.name}"></h3>
-    </div>
-    <div class="button">
-        <a class="btn btn-primary" th:href="${'/products'}">Back to List</a>
-    </div>
+    <h2 th:text="${groupName}"> orders</h2>
+    <table>
+    <tr th:each="order : ${group_orders}">
+        <td th:text="${order.creationDate}"></td>
+        <td>
+            <div>
+                <a style="margin-left: 50px" class="btn btn-primary" th:href="${'/orders/' + order.id}">To order</a>
+            </div>
+        </td>
+    </tr>
+    </table>
+    <a style="margin-top: 20px" class="btn btn-success" th:href="${'/orders/new_order'}">Create New Order</a>
 </div>
 </body>
 </html>

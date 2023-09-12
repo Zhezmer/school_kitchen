@@ -21,7 +21,7 @@
                     <a class="nav-link" th:href="${'/orders'}">Orders</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" th:href="${'/orders/new_order'}">New order</a>
+                    <a class="nav-link" th:href="${'/groups'}">Groups</a>
                 </li>
             </ul>
         </div>
@@ -29,7 +29,7 @@
     <div class="row mt-4">
         <div class="col-md-6 offset-md-3">
             <h2>New Group</h2>
-            <!-- Форма с использованием стилей формы Bootstrap -->
+
             <form method="post" th:action="@{/groups/new_group}" th:object="${group}">
                 <div class="form-group">
                     <input type="hidden" th:field="*{id}"/>
@@ -37,7 +37,7 @@
                 <div class="form-group">
                     <input type="text" class="form-control" placeholder="Group Name" th:field="*{name}"/>
                 </div>
-                <button class="btn btn-primary" type="submit">Next</button>
+                <button style="margin-top: 20px" class="btn btn-primary" type="submit">Next</button>
             </form>
         </div>
     </div>

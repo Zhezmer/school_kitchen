@@ -12,7 +12,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @Controller
-@RequestMapping("/kitchen_order_item")
+@RequestMapping("/kitchen_order_items")
 public class KitchenOrderItemController {
 private final KitchenOrderItemService kitchenOrderItemService;
 

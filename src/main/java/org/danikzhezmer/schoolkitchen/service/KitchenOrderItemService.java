@@ -48,4 +48,7 @@ public class KitchenOrderItemService {
     public List<String> findProducts(){
         return productRepository.findAll().stream().map(Product::getName).collect(Collectors.toList());
     }
+    public List<KitchenOrderItem> findAllByKitchenOrderId(Long orderId){
+        return kitchenOrderItemRepository.findAllByKitchenOrderId(orderId);
+    }
 }
