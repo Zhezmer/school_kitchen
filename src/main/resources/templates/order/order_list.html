@@ -29,16 +29,19 @@
     </nav>
     <h2>Order list</h2>
     <table>
-    <tr th:each="order : ${orders}">
-        <td th:text="${order.group.name}"></td>
-        <td>
-            <div>
-                <a style="margin-left: 50px" class="btn btn-primary" th:href="${'/orders/groupOrders/' + order.group.name}">To orders</a>
-            </div>
-        </td>
-    </tr>
+        <tr th:each="order : ${orders}">
+            <td th:text="${order.group.name}"></td>
+            <td>
+                <div>
+                    <a style="margin-left: 50px" class="btn btn-primary"
+                       th:href="${'/orders/groupOrders/' + order.group.name}">To orders</a>
+                </div>
+
+            </td>
+        </tr>
     </table>
-    <a style="margin-top: 20px" class="btn btn-success" th:href="${'/orders/new_order'}">Create New Order</a>
+    <a style="margin: 20px 2px 20px 0" class="btn btn-success" th:href="${'/orders/new_order'}">Create New Order</a>
+    <a style="margin: 20px 20px 20px 0" class="btn btn-secondary" href="/orders">Back</a>
 </div>
 </body>
 </html>

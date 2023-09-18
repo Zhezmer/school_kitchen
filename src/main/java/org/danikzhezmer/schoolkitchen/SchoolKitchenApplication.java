@@ -42,7 +42,7 @@ public class SchoolKitchenApplication implements CommandLineRunner {
 //        KitchenOrder kitchenOrder = new KitchenOrder();
 //        kitchenOrder.setCreationDate(LocalDate.now());
 //        kitchenOrder.setOrderDateTo(LocalDate.now());
-//        kitchenOrder.setGroup(createGroup());
+//        kitchenOrder.setGroup(schoolGroupRepository.findByName("test group"));
 //        KitchenOrder savedOrder = kitchenOrderRepository.save(kitchenOrder);
 //
 //
@@ -52,7 +52,7 @@ public class SchoolKitchenApplication implements CommandLineRunner {
 //        KitchenOrder savedOrderWithItems = kitchenOrderRepository.findById(savedOrder.getId())
 //                .orElse(null);
 //        System.out.println(savedOrderWithItems);
-  //      System.out.println(savedOrderWithItems.getKitchenOrderItems());
+//        System.out.println(savedOrderWithItems.getKitchenOrderItems());
     }
     private void addProductToOrder(KitchenOrder order, Product product) {
         KitchenOrderItem kitchenOrderProduct = new KitchenOrderItem();
