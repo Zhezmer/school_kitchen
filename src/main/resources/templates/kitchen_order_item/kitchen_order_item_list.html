@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Kitchen Order Items List</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Navigation</a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="${'/products'}">Products</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="${'/orders'}">Orders</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="${'/orders/new_order'}">New order</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <h1 class="mt-4">Kitchen Order Items List</h1>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Kitchen Order Number</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="kitchen_order_item : ${kitchen_order_items}">
+            <td th:text="${kitchen_order_item.id}"></td>
+            <td>
+                <div>
+                    <a class="btn btn-primary" th:href="${'/kitchen_order_products/' + kitchen_order_item.id}">To Order</a>
+                </div>
+                <div>
+                    <a class="btn btn-danger" th:href="${'/kitchen_order_products/' + kitchen_order_item.id + '/delete'}">Delete</a>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
