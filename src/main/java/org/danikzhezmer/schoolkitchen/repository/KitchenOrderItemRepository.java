@@ -8,5 +8,5 @@ import java.util.List;
 public interface KitchenOrderItemRepository extends JpaRepository<KitchenOrderItem, Long> {
 
 
-    List<KitchenOrderItem> findAllByKitchenOrderId(Long KitchenOrderId);
+    List<KitchenOrderItem> findAllByKitchenOrderId(Long kitchenOrderId);
 }

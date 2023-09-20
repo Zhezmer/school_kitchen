@@ -1,6 +1,7 @@
 package org.danikzhezmer.schoolkitchen.service;
 
 import org.danikzhezmer.schoolkitchen.entity.SchoolGroup;
+import org.danikzhezmer.schoolkitchen.exception.EntityNotFoundException;
 import org.danikzhezmer.schoolkitchen.repository.SchoolGroupRepository;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +17,7 @@ public class SchoolGroupService {
     }
 
     public SchoolGroup findById(Long id) {
-        return schoolGroupRepository.findById(id).orElse(null);
+        return schoolGroupRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Group with current id not found " + id));
     }
 
     public List<SchoolGroup> findAll(){

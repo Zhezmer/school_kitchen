@@ -45,7 +45,7 @@ public class KitchenOrderItemService {
         kitchenOrderItemRepository.save(kitchenOrderItem);
     }
 
-    public List<String> findProducts(){
+    public List<String>  getAllProductNames(){
         return productRepository.findAll().stream().map(Product::getName).collect(Collectors.toList());
     }
     public List<KitchenOrderItem> findAllByKitchenOrderId(Long orderId){

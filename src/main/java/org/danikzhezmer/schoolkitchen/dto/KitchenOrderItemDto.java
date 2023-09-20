@@ -2,7 +2,7 @@ package org.danikzhezmer.schoolkitchen.dto;
 
 public class KitchenOrderItemDto {
 
-    private Long Id;
+    private Long id;
     private Long kitchenOrderId;
     private Long productId;
 
@@ -16,7 +16,7 @@ public class KitchenOrderItemDto {
     }
 
     public KitchenOrderItemDto(Long id, Long kitchenOrderId, Long productId, String productName, String measure, int qty) {
-        Id = id;
+        this.id = id;
         this.kitchenOrderId = kitchenOrderId;
         this.productId = productId;
         this.productName = productName;
@@ -25,11 +25,11 @@ public class KitchenOrderItemDto {
     }
 
     public Long getId() {
-        return Id;
+        return id;
     }
 
     public void setId(Long id) {
-        Id = id;
+        this.id = id;
     }
 
     public Long getKitchenOrderId() {
