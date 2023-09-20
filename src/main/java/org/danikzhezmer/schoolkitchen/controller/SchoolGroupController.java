@@ -1,15 +1,13 @@
 package org.danikzhezmer.schoolkitchen.controller;
 
-import org.danikzhezmer.schoolkitchen.entity.Product;
+
 import org.danikzhezmer.schoolkitchen.entity.SchoolGroup;
-import org.danikzhezmer.schoolkitchen.repository.SchoolGroupRepository;
 import org.danikzhezmer.schoolkitchen.service.SchoolGroupService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Arrays;
-import java.util.List;
+
 
 @Controller
 @RequestMapping("groups")

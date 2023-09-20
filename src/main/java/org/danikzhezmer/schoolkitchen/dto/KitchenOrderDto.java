@@ -1,7 +1,5 @@
 package org.danikzhezmer.schoolkitchen.dto;
 
-
-import java.time.Instant;
 import java.time.LocalDate;
 
 public class KitchenOrderDto {
