@@ -2,11 +2,9 @@ package org.danikzhezmer.schoolkitchen.entity;
 
 import jakarta.persistence.*;
 import org.springframework.format.annotation.DateTimeFormat;
-
 import java.time.LocalDate;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Set;
+
 
 
 @Entity
@@ -46,9 +44,7 @@ public class KitchenOrder {
         return kitchenOrderItems;
     }
 
-    public void setKitchenOrderItems(List<KitchenOrderItem> kitchenOrderItems) {
-        this.kitchenOrderItems = kitchenOrderItems;
-    }
+
 
     public Long getId() {
         return id;

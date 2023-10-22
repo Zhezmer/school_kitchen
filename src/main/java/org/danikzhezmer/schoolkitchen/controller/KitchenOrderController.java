@@ -14,6 +14,7 @@ import org.danikzhezmer.schoolkitchen.service.SchoolGroupService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 
@@ -46,8 +47,9 @@ public class KitchenOrderController {
         model.addAttribute("groups", schoolGroupService.findAll());
         return "order/order_list";
     }
+
     @GetMapping("/groupOrders/{groupName}")
-    public String getGroupOrders(@PathVariable("groupName")String groupName, Model model){
+    public String getGroupOrders(@PathVariable("groupName") String groupName, Model model) {
         model.addAttribute("group_orders", kitchenOrderService.findKitchenOrderByGroupName(groupName));
         return "order/group_orders";
     }
@@ -92,6 +94,12 @@ public class KitchenOrderController {
 
         model.addAttribute("order", dto);
         return "/order/new_order";
+    }
+
+    @PostMapping("/{id}/delete")
+    public String deleteOrder(@PathVariable("id") Long id) {
+        kitchenOrderService.deleteById(id);
+        return "redirect:/order/order_list";
     }
 
     @PostMapping("/new_order")

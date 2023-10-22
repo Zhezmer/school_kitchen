@@ -9,4 +9,7 @@ public interface KitchenOrderRepository  extends JpaRepository<KitchenOrder, Lon
 
     KitchenOrder findKitchenOrderById(Long id);
     List<KitchenOrder> findKitchenOrderByGroupName(String groupName);
+
+
+
 }

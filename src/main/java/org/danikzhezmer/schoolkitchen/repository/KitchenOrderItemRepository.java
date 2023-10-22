@@ -10,4 +10,6 @@ public interface KitchenOrderItemRepository extends JpaRepository<KitchenOrderIt
 
     List<KitchenOrderItem> findAllByKitchenOrderId(Long kitchenOrderId);
     void deleteAllByKitchenOrderId(Long kitchenOrderId);
+
+
 }

@@ -59,7 +59,7 @@ public class KitchenOrderDto {
     }
 
     public void setOrderDateTo(LocalDate orderDateTo) {
-        this.orderDateTo = orderDateTo;
+       this.orderDateTo = (orderDateTo != null) ? orderDateTo : LocalDate.now().plusDays(1);
     }
 
     public List<KitchenOrderItemDto> getItems() {

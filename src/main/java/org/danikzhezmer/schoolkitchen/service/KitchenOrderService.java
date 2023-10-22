@@ -70,4 +70,9 @@ public class KitchenOrderService {
     public List<KitchenOrder> findKitchenOrderByGroupName(String groupName) {
         return kitchenOrderRepository.findKitchenOrderByGroupName(groupName);
     }
+
+    public void deleteById(Long id) {
+
+        kitchenOrderRepository.deleteById(id);
+    }
 }

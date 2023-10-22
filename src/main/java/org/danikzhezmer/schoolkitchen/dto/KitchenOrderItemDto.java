@@ -6,11 +6,6 @@ public class KitchenOrderItemDto {
     private String measure;
     private int qty;
 
-    public KitchenOrderItemDto(Long productId, String measure, int qty) {
-        this.productId = productId;
-        this.measure = measure;
-        this.qty = qty;
-    }
 
     public KitchenOrderItemDto() {
     }
@@ -36,6 +31,8 @@ public class KitchenOrderItemDto {
     }
 
     public void setQty(int qty) {
-        this.qty = qty;
+        if (qty >= 0) {
+            this.qty = qty;
+        }
     }
 }
