@@ -23,10 +23,6 @@ public class IndexController {
 
     @GetMapping("/")
     public String index(Model model){
-        model.addAttribute("order", new KitchenOrderDto());
-        List<String> listOfGroups = schoolGroupService.findAll().stream().map(SchoolGroup::getName).collect(Collectors.toList());
-        model.addAttribute("listOfGroups", listOfGroups);
-        return "order/new_order";
-
+        return "redirect:/orders/new_order";
     }
 }

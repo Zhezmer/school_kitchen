@@ -17,7 +17,7 @@ public class KitchenOrder {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "group_id", referencedColumnName = "id")
     private SchoolGroup group;
 

@@ -8,31 +8,19 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
             crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 <div class="container">
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Navigation</a>
-        <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link" href="/products">Products</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/orders">Orders</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="${'/groups'}">Groups</a>
-            </li>
-        </ul>
-    </nav>
+    <div th:replace = "~{headers/header :: head}"></div>
 
     <div class="row">
         <div class="col-md-2"></div>
         <div class="col-md-8">
-            <h1>New Order</h1>
-            <form class="form-horizontal" th:action="@{/orders/new_order}" th:object="${order}" method="post">
-                <input  type="hidden" th:field="*{orderId}"/>
+            <h1>New Order!</h1>
+            <form class="form-horizontal" th:action="@{/orders/new_order}" th:object="${order}" method="post" id="orderForm">
+                <input type="hidden" th:field="*{orderId}"/>
                 <div class="form-group">
                     <label class="col-sm-2 control-label">Date today:</label>
                     <div class="col-sm-10">
@@ -42,22 +30,121 @@
                 <div class="form-group">
                     <label class="col-sm-2 control-label">Group</label>
                     <div class="col-sm-10">
-                        <select class="form-control" th:field="*{groupName}">
-                            <option th:each="name : ${listOfGroups}"
-                                    th:text="${name}"
-                                    th:value="${name}"></option>
+                        <select class="form-control" th:field="*{groupId}">
+                            <option th:each="group : ${groups}" th:text="${group.name}" th:value="${group.id}"></option>
                         </select>
                     </div>
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">order date to</label>
-                        <div class="col-sm-10">
-                            <input class="form-control" type="date" th:field="${order.orderDateTo}"/>
-                        </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">order date to</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" type="date" id="orderDateTo" name="orderDateTo" th:value="${order.orderDateTo}"/>
                     </div>
                 </div>
+                <div id="productFields" th:each="item,iter : ${order.items}">
+                    <!-- Dynamic fields will be added here -->
 
+
+                    <div th:id="'productGroup' + ${iter.index}">
+                        <select class="form-control" name="productIds" required>
+                            <option value="">Выберите продукт</option>
+                            <option th:each="product : ${products}" th:text="${product.name}" th:value="${product.id}" th:selected="${product.id == item.productId}"></option>
+                            <!-- Здесь вы можете использовать цикл Thymeleaf для заполнения опций продуктов -->
+                        </select>
+                        <input class="form-control" type="text" name="measures" placeholder="Единица измерения" th:value="${item.measure}" required>
+                        <input class="form-control" type="number" name="qtys" placeholder="Количество" th:value="${item.qty}" required>
+                        <button type="button" class="btn btn-danger removeProductButton" th:data-product-group="'productGroup' + ${iter.index}">Удалить</button>
+                    </div>
+
+
+                </div>
+                <div th:if="${#lists.isEmpty(order.items)}">
+                    <!-- Ваш код для случая, когда список пуст -->
+                    <div id="productFields"></div>
+                </div>
+                <button type="button" id="addProductButton" class="btn btn-primary">Добавить продукт</button>
                 <p><input style="margin-top: 20px" class="btn btn-primary" type="submit" value="Submit"/> <input style="margin-top: 20px" class="btn btn-primary" type="reset" value="Reset"/></p>
             </form>
+
+            <script th:inline="javascript">
+                let products = /*[[${products}]]*/ "Gertrud Kiwifruit";
+                console.log(JSON.stringify(products))
+                /* JavaScript code to manage dynamic fields */
+                $(document).ready(function() {
+                    let productCount = 0;
+
+                    // Функция для добавления набора полей продукта
+                    function addProductFields() {
+                        productCount++;
+
+                        let productOptions = products.map(p => `<option value="${p.id}">${p.name}</option>`)
+                        let productFieldsHtml = `
+                            <div id="productGroup${productCount}">
+                                <select class="form-control" name="productIds" required>
+                                    <option value="">Выберите продукт</option>
+                                    ${productOptions}
+                                    <!-- Здесь вы можете использовать цикл Thymeleaf для заполнения опций продуктов -->
+                                </select>
+                                <input class="form-control" type="text" name="measures" placeholder="Единица измерения" required>
+                                <input class="form-control" type="number" name="qtys" placeholder="Количество" required>
+                                <button type="button" class="btn btn-danger removeProductButton" data-product-group="productGroup${productCount}">Удалить</button>
+                            </div>
+                        `;
+                        $("#productFields").append(productFieldsHtml);
+                    }
+
+                    // Функция для удаления набора полей продукта
+                    $(document).on("click", ".removeProductButton", function() {
+                        let productGroup = $(this).data("product-group");
+                        $("#" + productGroup).remove();
+                    });
+
+                    // Обработчик кнопки "Добавить продукт"
+                    $("#addProductButton").click(function() {
+                        addProductFields();
+                    });
+
+                    // Обработчик отправки формы
+                    $("#orderForm").submit(function(event) {
+                        event.preventDefault(); // Предотвратить стандартное действие отправки формы
+
+                        // Собрать данные из полей формы в JSON
+                        let orderData = {
+                            orderId: $("[name='orderId']").val(),
+                            groupId: $("[name='groupId']").val(),
+                            orderDateTo: $("[name='orderDateTo']").val(),
+                            creationDate: $("[name='creationDate']").val(),
+                            items: [] // Массив для хранения данных о продуктах
+                        };
+
+                        // Собираем данные о продуктах
+                        $("#productFields > div").each(function() {
+                            let productGroup = $(this);
+                            let productData = {
+                                productId: productGroup.find("[name='productIds']").val(),
+                                measure: productGroup.find("[name='measures']").val(),
+                                qty: productGroup.find("[name='qtys']").val()
+                            };
+                            orderData.items.push(productData);
+                        });
+
+                        // Отправить данные на сервер (здесь используйте AJAX)
+                        $.ajax({
+                            type: "POST",
+                            url: "/orders/new_order", // Замените на правильный URL
+                            data: JSON.stringify(orderData),
+                            contentType: "application/json",
+                            success: function(response) {
+                                window.location.href = "/group_orders.html"
+                            },
+                            error: function(error) {
+                                // Обработка ошибки
+                            }
+                        });
+                    });
+                });
+
+            </script>
         </div>
         <div class="col-md-2"></div>
     </div>

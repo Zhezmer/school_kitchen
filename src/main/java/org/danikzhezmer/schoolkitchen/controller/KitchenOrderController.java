@@ -1,15 +1,20 @@
 package org.danikzhezmer.schoolkitchen.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import org.danikzhezmer.schoolkitchen.dto.KitchenOrderDto;
+import org.danikzhezmer.schoolkitchen.dto.KitchenOrderItemDto;
 import org.danikzhezmer.schoolkitchen.entity.KitchenOrder;
+import org.danikzhezmer.schoolkitchen.entity.KitchenOrderItem;
+import org.danikzhezmer.schoolkitchen.entity.Product;
 import org.danikzhezmer.schoolkitchen.entity.SchoolGroup;
 import org.danikzhezmer.schoolkitchen.service.KitchenOrderItemService;
 import org.danikzhezmer.schoolkitchen.service.KitchenOrderService;
+import org.danikzhezmer.schoolkitchen.service.ProductService;
+import org.danikzhezmer.schoolkitchen.service.SchoolGroupService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
-import java.util.stream.Collectors;
 
 
 @Controller
@@ -18,10 +23,15 @@ public class KitchenOrderController {
 
     private final KitchenOrderService kitchenOrderService;
     private final KitchenOrderItemService kitchenOrderItemService;
+    private final SchoolGroupService schoolGroupService;
 
-    public KitchenOrderController(KitchenOrderService kitchenOrderService, KitchenOrderItemService kitchenOrderItemService) {
+    private final ProductService productService;
+
+    public KitchenOrderController(KitchenOrderService kitchenOrderService, KitchenOrderItemService kitchenOrderItemService, SchoolGroupService schoolGroupService, ProductService productService) {
         this.kitchenOrderService = kitchenOrderService;
         this.kitchenOrderItemService = kitchenOrderItemService;
+        this.schoolGroupService = schoolGroupService;
+        this.productService = productService;
     }
 
     @GetMapping("/{id}")
@@ -33,7 +43,7 @@ public class KitchenOrderController {
 
     @GetMapping
     public String getOrderList(Model model) {
-        model.addAttribute("orders", kitchenOrderService.findAll());
+        model.addAttribute("groups", schoolGroupService.findAll());
         return "order/order_list";
     }
     @GetMapping("/groupOrders/{groupName}")
@@ -43,15 +53,49 @@ public class KitchenOrderController {
     }
 
     @GetMapping("/new_order")
-    public String newOrderForm(Model model) {
+    public String newOrderForm(Model model) throws JsonProcessingException {
         model.addAttribute("order", new KitchenOrderDto());
-        List<String> listOfGroups = kitchenOrderService.findAll().stream().map(KitchenOrder::getGroup).map(SchoolGroup::getName).collect(Collectors.toList());
-        model.addAttribute("listOfGroups", listOfGroups);
+        List<SchoolGroup> groups = schoolGroupService.findAll();
+        List<Product> products = productService.findAll();
+
+        model.addAttribute("groups", groups);
+        model.addAttribute("products", products);
         return "order/new_order";
     }
 
+    @GetMapping("/{id}/edit")
+    public String editOrder(@PathVariable("id") Long id, Model model) {
+        KitchenOrder kitchenOrder = kitchenOrderService.findById(id);
+        List<KitchenOrderItem> kitchenOrderItems = kitchenOrderItemService.findAllByKitchenOrderId(id);
+
+        KitchenOrderDto dto = new KitchenOrderDto();
+        dto.setOrderId(kitchenOrder.getId());
+        dto.setGroupId(kitchenOrder.getGroup().getId());
+        dto.setOrderDateTo(kitchenOrder.getOrderDateTo());
+        dto.setCreationDate(kitchenOrder.getCreationDate());
+        dto.setItems(
+                kitchenOrderItems.stream()
+                        .map(kitchenOrderItem -> {
+                            KitchenOrderItemDto item = new KitchenOrderItemDto();
+                            item.setMeasure(kitchenOrderItem.getMeasure());
+                            item.setProductId(kitchenOrderItem.getProduct().getId());
+                            item.setQty(kitchenOrderItem.getQty());
+                            return item;
+                        }).toList()
+        );
+
+        List<SchoolGroup> groups = schoolGroupService.findAll();
+        List<Product> products = productService.findAll();
+
+        model.addAttribute("groups", groups);
+        model.addAttribute("products", products);
+
+        model.addAttribute("order", dto);
+        return "/order/new_order";
+    }
+
     @PostMapping("/new_order")
-    public String submitForm(@ModelAttribute KitchenOrderDto order) {
+    public String submitForm(@RequestBody KitchenOrderDto order) {
         kitchenOrderService.save(order);
         return "redirect:/kitchen_order_items/new_kitchen_order_item";
     }

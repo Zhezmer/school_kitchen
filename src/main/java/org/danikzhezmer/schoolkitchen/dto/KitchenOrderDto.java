@@ -1,26 +1,33 @@
 package org.danikzhezmer.schoolkitchen.dto;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class KitchenOrderDto {
 
     private Long orderId;
 
-    private String groupName;
+    private Long groupId;
 
     private LocalDate creationDate;
 
     private LocalDate orderDateTo;
 
-    public String getGroupName() {
-        return groupName;
+    private List<KitchenOrderItemDto> items;
+
+    public KitchenOrderDto() {
     }
 
-    public KitchenOrderDto(String groupName, LocalDate creationDate, LocalDate orderDateTo, Long orderId) {
+    public KitchenOrderDto(Long orderId,
+                           Long groupId,
+                           LocalDate creationDate,
+                           LocalDate orderDateTo,
+                           List<KitchenOrderItemDto> items) {
         this.orderId = orderId;
-        this.groupName = groupName;
+        this.groupId = groupId;
         this.creationDate = creationDate;
         this.orderDateTo = orderDateTo;
+        this.items = items;
     }
 
     public Long getOrderId() {
@@ -31,12 +38,12 @@ public class KitchenOrderDto {
         this.orderId = orderId;
     }
 
-    public KitchenOrderDto() {
-        this.creationDate = LocalDate.now();
+    public Long getGroupId() {
+        return groupId;
     }
 
-    public void setGroupName(String groupName) {
-        this.groupName = groupName;
+    public void setGroupId(Long groupId) {
+        this.groupId = groupId;
     }
 
     public LocalDate getCreationDate() {
@@ -55,4 +62,11 @@ public class KitchenOrderDto {
         this.orderDateTo = orderDateTo;
     }
 
+    public List<KitchenOrderItemDto> getItems() {
+        return items;
+    }
+
+    public void setItems(List<KitchenOrderItemDto> items) {
+        this.items = items;
+    }
 }

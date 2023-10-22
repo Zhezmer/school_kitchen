@@ -11,30 +11,15 @@
 </head>
 <body>
 <div class="container">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Navigation</a>
-        <div class="collapse navbar-collapse">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" th:href="${'/products'}">Products</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" th:href="${'/orders'}">Orders</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" th:href="${'/groups'}">Groups</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
+    <div th:replace = "~{headers/header :: head}"></div>
     <h2>Order list</h2>
     <table>
-        <tr th:each="order : ${orders}">
-            <td th:text="${order.group.name}"></td>
+        <tr th:each="group : ${groups}">
+            <td th:text="${group.name}"></td>
             <td>
                 <div>
                     <a style="margin-left: 50px" class="btn btn-primary"
-                       th:href="${'/orders/groupOrders/' + order.group.name}">To orders</a>
+                       th:href="${'/orders/groupOrders/' + group.name}">To orders</a>
                 </div>
 
             </td>

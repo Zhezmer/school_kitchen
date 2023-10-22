@@ -26,19 +26,22 @@ create table if not exists product
     id   serial primary key,
     name varchar(25) not null
 );
-drop table if exists kitchen_order_product;
-create table if not exists kitchen_order_product
+create table kitchen_order_item
 (
-    id              serial primary key,
-    kitchen_order_id        int         not null,
-    product_id      int         not null,
-    quantity        int         not null,
-    unit_of_measure varchar(25) not null,
-    CONSTRAINT fk_product
-        FOREIGN KEY (product_id)
-            REFERENCES product (id),
-    CONSTRAINT fk_order
-        FOREIGN KEY (kitchen_order_id)
-            REFERENCES kitchen_order (id)
-
+    id               bigserial
+        primary key,
+    measure          varchar(255),
+    qty              integer not null,
+    kitchen_order_id bigint
+        constraint fkch483g47dr58rm8xkdpki4u6y
+            references public.kitchen_order,
+    product_id       bigint
+        constraint uk_h8vsl1f819tg4fytla96h40ac
+            unique
+        constraint fkfwf417jpl4hyqa4pcs4yl6e1i
+            references public.product
 );
+
+alter table public.kitchen_order_item
+    owner to "user";
+

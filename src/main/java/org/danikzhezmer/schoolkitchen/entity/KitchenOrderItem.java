@@ -13,7 +13,7 @@ public class KitchenOrderItem {
     @JoinColumn(name = "kitchen_order_id", referencedColumnName = "id")
     private KitchenOrder kitchenOrder;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "product_id", referencedColumnName = "id")
     private Product product;
 
