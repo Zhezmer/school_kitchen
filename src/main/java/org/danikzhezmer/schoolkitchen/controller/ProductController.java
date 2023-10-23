@@ -1,14 +1,12 @@
 package org.danikzhezmer.schoolkitchen.controller;
 
 import org.danikzhezmer.schoolkitchen.entity.Product;
-import org.danikzhezmer.schoolkitchen.entity.SchoolGroup;
-import org.danikzhezmer.schoolkitchen.repository.ProductRepository;
 import org.danikzhezmer.schoolkitchen.service.ProductService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+
 
 
 @Controller
@@ -45,7 +43,7 @@ public class ProductController {
         productService.save(product);
         return "redirect:/products";
     }
-    @GetMapping("/{productId}/delete")
+    @PostMapping("/{productId}/delete")
     public String deleteProduct(@PathVariable Long productId) {
         productService.deleteById(productId);
         return "redirect:/products";

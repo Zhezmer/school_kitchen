@@ -5,6 +5,7 @@ import org.danikzhezmer.schoolkitchen.entity.KitchenOrder;
 import org.danikzhezmer.schoolkitchen.entity.KitchenOrderItem;
 import org.danikzhezmer.schoolkitchen.entity.Product;
 import org.danikzhezmer.schoolkitchen.entity.SchoolGroup;
+import org.danikzhezmer.schoolkitchen.exception.EntityNotFoundException;
 import org.danikzhezmer.schoolkitchen.repository.KitchenOrderItemRepository;
 import org.danikzhezmer.schoolkitchen.repository.KitchenOrderRepository;
 import org.danikzhezmer.schoolkitchen.repository.ProductRepository;
@@ -71,8 +72,10 @@ public class KitchenOrderService {
         return kitchenOrderRepository.findKitchenOrderByGroupName(groupName);
     }
 
-    public void deleteById(Long id) {
+    public void deleteKitchenOrderById(Long id) {
 
         kitchenOrderRepository.deleteById(id);
     }
+
+
 }

@@ -12,4 +12,5 @@ public interface KitchenOrderRepository  extends JpaRepository<KitchenOrder, Lon
 
 
 
+
 }

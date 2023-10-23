@@ -98,7 +98,7 @@ public class KitchenOrderController {
 
     @PostMapping("/{id}/delete")
     public String deleteOrder(@PathVariable("id") Long id) {
-        kitchenOrderService.deleteById(id);
+        kitchenOrderService.deleteKitchenOrderById(id);
         return "redirect:/order/order_list";
     }
 
