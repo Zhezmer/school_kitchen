@@ -1,5 +1,6 @@
 package org.danikzhezmer.schoolkitchen.service;
 
+import jakarta.transaction.Transactional;
 import org.danikzhezmer.schoolkitchen.dto.KitchenOrderDto;
 import org.danikzhezmer.schoolkitchen.entity.KitchenOrder;
 import org.danikzhezmer.schoolkitchen.entity.KitchenOrderItem;
@@ -31,6 +32,7 @@ public class KitchenOrderService {
         this.productRepository = productRepository;
     }
 
+    @Transactional
     public void save(KitchenOrderDto dto) {
         SchoolGroup group = schoolGroupRepository.findById(dto.getGroupId()).orElse(null);
         KitchenOrder kitchenOrder = dto.getOrderId() == null
@@ -73,7 +75,7 @@ public class KitchenOrderService {
     }
 
     public void deleteKitchenOrderById(Long id) {
-
+        kitchenOrderItemRepository.deleteAllByKitchenOrderId(id);
         kitchenOrderRepository.deleteById(id);
     }
 

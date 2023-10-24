@@ -96,10 +96,10 @@ public class KitchenOrderController {
         return "/order/new_order";
     }
 
-    @PostMapping("/{id}/delete")
+    @GetMapping ("/{id}/delete")
     public String deleteOrder(@PathVariable("id") Long id) {
         kitchenOrderService.deleteKitchenOrderById(id);
-        return "redirect:/order/order_list";
+        return "redirect:/orders";
     }
 
     @PostMapping("/new_order")
