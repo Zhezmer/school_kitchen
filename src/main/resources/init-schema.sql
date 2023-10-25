@@ -46,6 +46,6 @@ alter table public.kitchen_order_item
     owner to "user";
 
 
--- ALTER TABLE public.kitchen_order_item DROP CONSTRAINT fkch483g47dr58rm8xkdpki4u6y;
+
 
 

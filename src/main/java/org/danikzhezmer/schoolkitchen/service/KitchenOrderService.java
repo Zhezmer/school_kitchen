@@ -1,17 +1,19 @@
 package org.danikzhezmer.schoolkitchen.service;
 
+
 import jakarta.transaction.Transactional;
 import org.danikzhezmer.schoolkitchen.dto.KitchenOrderDto;
 import org.danikzhezmer.schoolkitchen.entity.KitchenOrder;
 import org.danikzhezmer.schoolkitchen.entity.KitchenOrderItem;
 import org.danikzhezmer.schoolkitchen.entity.Product;
 import org.danikzhezmer.schoolkitchen.entity.SchoolGroup;
-import org.danikzhezmer.schoolkitchen.exception.EntityNotFoundException;
+
 import org.danikzhezmer.schoolkitchen.repository.KitchenOrderItemRepository;
 import org.danikzhezmer.schoolkitchen.repository.KitchenOrderRepository;
 import org.danikzhezmer.schoolkitchen.repository.ProductRepository;
 import org.danikzhezmer.schoolkitchen.repository.SchoolGroupRepository;
 import org.springframework.stereotype.Service;
+
 
 import java.time.LocalDate;
 import java.util.List;
