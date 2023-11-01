@@ -75,7 +75,7 @@ public class KitchenOrderService {
     public List<KitchenOrder> findKitchenOrderByGroupName(String groupName) {
         return kitchenOrderRepository.findKitchenOrderByGroupName(groupName);
     }
-
+    @Transactional
     public void deleteKitchenOrderById(Long id) {
         kitchenOrderItemRepository.deleteAllByKitchenOrderId(id);
         kitchenOrderRepository.deleteById(id);

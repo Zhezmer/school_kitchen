@@ -1,0 +1,9 @@
+insert into school_group(name) values ('Daniel'), ('Anzor');
+
+insert into product(name) values ('milk'), ('nutella'), ('joint');
+
+INSERT INTO role(role) VALUES ('ROLE_USER');
+INSERT INTO role(role) VALUES ('ROLE_ADMIN');
+
+INSERT INTO users(role_id, username, password, first_name, last_name, email, personal_id, phone_number)
+VALUES ((select id from role where role = 'ROLE_ADMIN'), 'root', '$2a$10$kifGdQNysdZJbSVHSnPFNOwWJtXsSz5Eys.oG.Ra8hE7WWBzGeNBW', 'админ', 'админ', 'admin@mail.ru', '33651', '05488');

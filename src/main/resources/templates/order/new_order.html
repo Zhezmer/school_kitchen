@@ -133,12 +133,8 @@
                             url: "/orders/new_order",
                             data: JSON.stringify(orderData),
                             contentType: "application/json",
-                            success: function(response) {
-
-                            },
-                            error: function(error) {
-
-                            }
+                            success: () => alert('Bum!'),
+                            error: () => alert('error!')
                         });
                     });
                 });
