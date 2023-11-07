@@ -1,6 +1,7 @@
 package org.danikzhezmer.schoolkitchen.controller;
 
 import jakarta.servlet.http.HttpServletRequest;
+import org.danikzhezmer.schoolkitchen.dto.KitchenOrderDto;
 import org.danikzhezmer.schoolkitchen.entity.User;
 import org.danikzhezmer.schoolkitchen.service.UserService;
 import org.springframework.security.core.Authentication;
@@ -8,6 +9,9 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+
 
 @Controller
 public class AuthController {
@@ -26,6 +30,14 @@ public class AuthController {
     public String registerPage(Model model) {
         model.addAttribute("user", new User());
         return "auth/register";
+    }
+
+    @PostMapping("/register")
+    public String submitForm(@ModelAttribute User user, Model model) {
+        model.addAttribute("user", user);
+        userService.save(user);
+        return "redirect:/login";
+
     }
 
     @GetMapping("/logout")
