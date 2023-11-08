@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
   <meta charset="UTF-8">
   <title>Title</title>
@@ -25,9 +25,11 @@
            </form>
 
          </li>
-        <li class="nav-item ml-auto">
-          <a class="nav-link" th:href="${'/users'}">Users</a>
+        <div sec:authorize="hasRole('ROLE_ADMIN')">
+        <li  class="nav-item ml-auto">
+            <a class="nav-link" th:href="${'/users'}">Users</a>
         </li>
+        </div>
          <li class="nav-item ml-auto">
            <a class="nav-link" th:href="${'/logout'}">Logout</a>
          </li>

@@ -36,7 +36,12 @@ public class SecurityConfig {
                         .usernameParameter("username")
                         .passwordParameter("password")
                         .permitAll())
+//                .exceptionHandling((exceptionHandling) ->
+//                        exceptionHandling
+//                                .accessDeniedPage("/errors/access-denied")
+               // )
                 .logout((logout) -> logout.logoutSuccessUrl("/login"));
+
         return http.build();
     }
     @Bean
