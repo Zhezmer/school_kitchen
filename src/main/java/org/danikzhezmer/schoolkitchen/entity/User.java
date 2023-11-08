@@ -96,7 +96,7 @@ public class User implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Collections.singletonList(new SimpleGrantedAuthority(role.getRole()));
+        return Collections.singletonList(new SimpleGrantedAuthority(role.getRoleName()));
     }
 
     public String getPassword() {
@@ -104,8 +104,7 @@ public class User implements UserDetails {
     }
 
     public void setPassword(String password) {
-        PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        this.password = passwordEncoder.encode(password);
+        this.password = password;
     }
 
     public String getFirstName() {

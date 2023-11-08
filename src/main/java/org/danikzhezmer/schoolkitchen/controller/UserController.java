@@ -1,6 +1,7 @@
 package org.danikzhezmer.schoolkitchen.controller;
 
 import org.danikzhezmer.schoolkitchen.service.UserService;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
+@PreAuthorize("hasRole('ROLE_ADMIN')")
 @RequestMapping("/users")
 public class UserController {
 
@@ -18,29 +20,23 @@ public class UserController {
     }
 
     @GetMapping
-    public String getUserList(Model model){
+    public String getUserList(Model model) {
         model.addAttribute("users", userService.findAll());
         return "user/user_list";
     }
 
     @GetMapping("/{id}")
-    public String getUser(@PathVariable("id") Long id, Model model){
+    public String getUser(@PathVariable("id") Long id, Model model) {
         model.addAttribute("user", userService.findById(id));
         return "user/user_card";
 
 
     }
 
-@GetMapping("/{id}/delete")
-    public String deleteUser(@PathVariable Long id){
+    @GetMapping("/{id}/delete")
+    public String deleteUser(@PathVariable Long id) {
         userService.deleteById(id);
         return "redirect:/users";
-}
-//    @GetMapping("/{productId}/delete")
-//    public String deleteProduct(@PathVariable Long productId) {
-//        productService.deleteById(productId);
-//        return "redirect:/products";
-//    }
-
+    }
 
 }

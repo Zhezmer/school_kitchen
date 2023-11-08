@@ -1,7 +1,6 @@
 package org.danikzhezmer.schoolkitchen.entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name = "role")
@@ -10,11 +9,11 @@ public class Role {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String role;
+    private String roleName;
 
-    public Role(Long id, String role) {
+    public Role(Long id, String roleName) {
         this.id = id;
-        this.role = role;
+        this.roleName = roleName;
     }
 
     public Role() {
@@ -29,11 +28,11 @@ public class Role {
         this.id = id;
     }
 
-    public String getRole() {
-        return role;
+    public String getRoleName() {
+        return roleName;
     }
 
-    public void setRole(String role) {
-        this.role = role;
+    public void setRoleName(String role) {
+        this.roleName = role;
     }
 }

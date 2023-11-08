@@ -41,7 +41,7 @@ create table if not exists kitchen_order_item
 CREATE TABLE if not exists role
 (
     id   BIGSERIAL    NOT NULL PRIMARY KEY,
-    role varchar(255) NOT NULL
+    role_name varchar(255) NOT NULL
 );
 
 CREATE TABLE if not exists users
