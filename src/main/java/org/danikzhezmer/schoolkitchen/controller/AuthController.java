@@ -1,7 +1,7 @@
 package org.danikzhezmer.schoolkitchen.controller;
 
 import jakarta.servlet.http.HttpServletRequest;
-import org.danikzhezmer.schoolkitchen.dto.KitchenOrderDto;
+import org.danikzhezmer.schoolkitchen.entity.Role;
 import org.danikzhezmer.schoolkitchen.entity.User;
 import org.danikzhezmer.schoolkitchen.service.UserService;
 import org.springframework.security.core.Authentication;
@@ -35,6 +35,11 @@ public class AuthController {
     @PostMapping("/register")
     public String submitForm(@ModelAttribute User user, Model model) {
         model.addAttribute("user", user);
+
+        //присвоение роли юзера всем
+        Role role = new Role(1L, "ROLE_USER");
+        user.setRole(role);
+
         userService.save(user);
         return "redirect:/login";
 

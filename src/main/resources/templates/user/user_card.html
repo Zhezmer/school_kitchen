@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <div th:replace = "~{headers/bootstrap :: boot}"></div>
+</head>
+<body>
+<div class="container">
+
+  <div th:replace = "~{headers/header :: head}"></div>
+  <div>
+    <table>
+      <tr>
+        <td>
+          <h3>Name</h3>
+        </td>
+        <td style="padding-left: 30px;">
+          <h5 th:text="${user.firstName}"></h5>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <h3>Surname</h3>
+        </td>
+        <td style="padding-left: 30px;">
+          <h5 th:text="${user.lastName}"></h5>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <h3>Id</h3>
+        </td>
+        <td style="padding-left: 30px;">
+          <h5 th:text="${user.personalId}"></h5>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <h3>E-Mail</h3>
+        </td>
+        <td style="padding-left: 30px;">
+          <h5 th:text="${user.email}"></h5>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <h3>Phone</h3>
+        </td>
+        <td style="padding-left: 30px;">
+          <h5 th:text="${user.phoneNumber}"></h5>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <h5>Role</h5>
+        </td>
+        <td style="padding-left: 30px;">
+          <h3 th:text="${user.role.role}"></h3>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+
+  <div class="button">
+    <a class="btn btn-primary" th:href="${'/users'}">Back to List</a>
+  </div>
+</div>
+</body>
+</html>
