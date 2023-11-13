@@ -71,7 +71,8 @@ public class OrderToExcelService {
             orderRow.createCell(1).setCellValue(orderItem.getMeasure());
             orderRow.createCell(2).setCellValue(orderItem.getQty());
         }
-        try(FileOutputStream out = new FileOutputStream(new File(System.getProperty("user.home") + "/Desktop/yourFileName.xlsx" + orderId))) {
+        try(FileOutputStream out = new FileOutputStream(new File(
+                System.getProperty("user.home") +  "/Desktop/" + groupName + "`s order " + orderId + ".xlsx"))) {
             workbook.write(out);
             System.out.println("document written successfully on disk.");
         }
