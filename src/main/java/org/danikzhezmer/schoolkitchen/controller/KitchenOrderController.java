@@ -7,10 +7,7 @@ import org.danikzhezmer.schoolkitchen.entity.KitchenOrder;
 import org.danikzhezmer.schoolkitchen.entity.KitchenOrderItem;
 import org.danikzhezmer.schoolkitchen.entity.Product;
 import org.danikzhezmer.schoolkitchen.entity.SchoolGroup;
-import org.danikzhezmer.schoolkitchen.service.KitchenOrderItemService;
-import org.danikzhezmer.schoolkitchen.service.KitchenOrderService;
-import org.danikzhezmer.schoolkitchen.service.ProductService;
-import org.danikzhezmer.schoolkitchen.service.SchoolGroupService;
+import org.danikzhezmer.schoolkitchen.service.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -25,13 +22,15 @@ public class KitchenOrderController {
     private final KitchenOrderService kitchenOrderService;
     private final KitchenOrderItemService kitchenOrderItemService;
     private final SchoolGroupService schoolGroupService;
+    private final OrderToExcelService orderToExcelService;
 
     private final ProductService productService;
 
-    public KitchenOrderController(KitchenOrderService kitchenOrderService, KitchenOrderItemService kitchenOrderItemService, SchoolGroupService schoolGroupService, ProductService productService) {
+    public KitchenOrderController(KitchenOrderService kitchenOrderService, KitchenOrderItemService kitchenOrderItemService, SchoolGroupService schoolGroupService, OrderToExcelService orderToExcelService, ProductService productService) {
         this.kitchenOrderService = kitchenOrderService;
         this.kitchenOrderItemService = kitchenOrderItemService;
         this.schoolGroupService = schoolGroupService;
+        this.orderToExcelService = orderToExcelService;
         this.productService = productService;
     }
 
@@ -106,5 +105,11 @@ public class KitchenOrderController {
     public String submitForm(@RequestBody KitchenOrderDto order) {
         kitchenOrderService.save(order);
         return "redirect:/kitchen_order_items/new_kitchen_order_item";
+    }
+
+    @GetMapping("{id}/xlsx")
+    public String getExelFile(@PathVariable Long id){
+        orderToExcelService.generate(id);
+        return "redirect:/orders";
     }
 }

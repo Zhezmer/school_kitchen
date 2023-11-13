@@ -31,6 +31,8 @@
     </table>
     <a style=" width: 150px" class="btn btn-secondary" th:href="${'/orders/groupOrders/' + order.group.name}">Back</a>
     <a style="margin-left: 2px" class="btn btn-warning" th:href="${'/orders/' + order.id + '/edit'}">Edit</a>
+    <a style="margin-left: 2px" class="btn btn-warning" th:href="${'/orders/' + order.id + '/xlsx'}">Send</a>
+
 </div>
 
 </body>
