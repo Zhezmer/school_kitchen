@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -22,7 +22,7 @@
             <td>
                 <div>
                     <a class="btn btn-primary" th:href="${'/groups/' + group.id}">To Group</a>
-                    <a class="btn btn-danger" th:href="${'/groups/' + group.id + '/delete'}">Delete</a>
+                    <a sec:authorize="hasRole('ROLE_ADMIN')" class="btn btn-danger" th:href="${'/groups/' + group.id + '/delete'}">Delete</a>
                 </div>
             </td>
         </tr>
