@@ -22,15 +22,12 @@ public class OrderMailSenderService {
     }
 
     public void send(Long orderId) throws MessagingException {
-      String filename = orderToExcelService.generate(orderId);
+    
         MimeMessage message = emailSender.createMimeMessage();
 
         MimeMessageHelper helper = new MimeMessageHelper(message, true);
 
-        helper.setFrom("schoolapp.mevoot@gmail.com");
-        helper.setTo("d.zhezmer@gmail.com");
-        helper.setSubject("order");//TODO add groupName
-        helper.setText("text");
+       
 
         File orderFile = new File(filename);
         FileSystemResource file
