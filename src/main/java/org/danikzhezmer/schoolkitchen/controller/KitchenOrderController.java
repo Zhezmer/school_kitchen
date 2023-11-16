@@ -1,6 +1,7 @@
 package org.danikzhezmer.schoolkitchen.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import jakarta.mail.MessagingException;
 import org.danikzhezmer.schoolkitchen.dto.KitchenOrderDto;
 import org.danikzhezmer.schoolkitchen.dto.KitchenOrderItemDto;
 import org.danikzhezmer.schoolkitchen.entity.KitchenOrder;
@@ -19,18 +20,21 @@ import java.util.List;
 @RequestMapping("/orders")
 public class KitchenOrderController {
 
+
+
     private final KitchenOrderService kitchenOrderService;
     private final KitchenOrderItemService kitchenOrderItemService;
     private final SchoolGroupService schoolGroupService;
-    private final OrderToExcelService orderToExcelService;
+
+    private final OrderMailSenderService orderMailSenderService;
 
     private final ProductService productService;
 
-    public KitchenOrderController(KitchenOrderService kitchenOrderService, KitchenOrderItemService kitchenOrderItemService, SchoolGroupService schoolGroupService, OrderToExcelService orderToExcelService, ProductService productService) {
+    public KitchenOrderController(KitchenOrderService kitchenOrderService, KitchenOrderItemService kitchenOrderItemService, SchoolGroupService schoolGroupService, OrderToExcelService orderToExcelService, OrderMailSenderService orderMailSenderService, ProductService productService) {
         this.kitchenOrderService = kitchenOrderService;
         this.kitchenOrderItemService = kitchenOrderItemService;
         this.schoolGroupService = schoolGroupService;
-        this.orderToExcelService = orderToExcelService;
+        this.orderMailSenderService = orderMailSenderService;
         this.productService = productService;
     }
 
@@ -95,7 +99,7 @@ public class KitchenOrderController {
         return "/order/new_order";
     }
 
-    @GetMapping ("/{id}/delete")
+    @DeleteMapping ("/{id}/delete")
     public String deleteOrder(@PathVariable("id") Long id) {
         kitchenOrderService.deleteKitchenOrderById(id);
         return "redirect:/orders";
@@ -108,8 +112,16 @@ public class KitchenOrderController {
     }
 
     @GetMapping("{id}/xlsx")
-    public String getExelFile(@PathVariable Long id){
-        orderToExcelService.generate(id);
+    public String getExelFile(@PathVariable Long id) {
+        try {
+            orderMailSenderService.send(id);
+
+        } catch (MessagingException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
         return "redirect:/orders";
     }
+
+
 }

@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.time.Instant;
 import java.util.List;
 
 @Service
@@ -27,7 +28,7 @@ public class OrderToExcelService {
         this.kitchenOrderItemRepository = kitchenOrderItemRepository;
     }
 
-    public void generate(Long orderId) {
+    public String generate(Long orderId) {
         KitchenOrder order = kitchenOrderRepository.findById(orderId).orElse(null);
         List<KitchenOrderItem> orderItems = kitchenOrderItemRepository.findAllByKitchenOrderId(orderId);
         XSSFWorkbook workbook = new XSSFWorkbook();
@@ -71,19 +72,14 @@ public class OrderToExcelService {
             orderRow.createCell(1).setCellValue(orderItem.getMeasure());
             orderRow.createCell(2).setCellValue(orderItem.getQty());
         }
-        try(FileOutputStream out = new FileOutputStream(new File(
-                System.getProperty("user.home") +  "/Desktop/" + groupName + "`s order " + orderId + ".xlsx"))) {
+        String fileName = System.getProperty("java.io.tmpdir") + groupName + "`s order " + orderId + Instant.now().getNano() + ".xlsx";
+        try (FileOutputStream out = new FileOutputStream(fileName)) {
             workbook.write(out);
             System.out.println("document written successfully on disk.");
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
+            throw new RuntimeException("Error while generating file");
         }
-
-
-
-
-
-
+        return fileName;
     }
 }

@@ -45,13 +45,24 @@
 
 
                     <div th:id="'productGroup' + ${iter.index}">
-                        <select class="form-control" name="productIds" required>
-                            <option value="">Выберите продукт</option>
-                            <option th:each="product : ${products}" th:text="${product.name}" th:value="${product.id}" th:selected="${product.id == item.productId}"></option>
-                            <!-- Здесь вы можете использовать цикл Thymeleaf для заполнения опций продуктов -->
-                        </select>
-                        <input class="form-control" type="text" name="measures" placeholder="Единица измерения" th:value="${item.measure}" required>
-                        <input class="form-control" type="number" name="qtys" placeholder="Количество" th:value="${item.qty}" required>
+                        <label>
+                            <select class="form-control" name="productIds" required>
+                                <option value="">Выберите продукт</option>
+                                <option th:each="product : ${products}" th:text="${product.name}" th:value="${product.id}" th:selected="${product.id == item.productId}"></option>
+                            </select>
+                        </label>
+                        <label>
+                            <select class="form-control" name="measures" required>
+                                <option value="" disabled selected>Выберите единицу измерения</option>
+                                <option value="штуки" th:selected="${item.measure == 'штуки'}">Штуки</option>
+                                <option value="кг" th:selected="${item.measure == 'кг'}">Кг</option>
+                                <option value="литры" th:selected="${item.measure == 'литры'}">Литры</option>
+                            </select>
+                        </label>
+                        <!--                        <input class="form-control" type="text" name="measures" placeholder="Единица измерения" th:value="${item.measure}" required>-->
+                        <label>
+                            <input class="form-control" type="number" name="qtys" placeholder="Количество" th:value="${item.qty}" required>
+                        </label>
                         <button type="button" class="btn btn-danger removeProductButton" th:data-product-group="'productGroup' + ${iter.index}">Удалить</button>
                     </div>
 
@@ -84,7 +95,12 @@
                                     ${productOptions}
                                     <!-- Здесь вы можете использовать цикл Thymeleaf для заполнения опций продуктов -->
                                 </select>
-                                <input class="form-control" type="text" name="measures" placeholder="Единица измерения" required>
+                                <select class="form-control" name="measures" required>
+                                   <option value="">Выберите единицу измерения</option>
+                                     <option value="штуки">Штуки</option>
+                                     <option value="кг" >Кг</option>
+                                     <option value="литры">Литры</option>
+                                 </select>
                                 <input class="form-control" type="number" name="qtys" placeholder="Количество" required>
                                 <button type="button" class="btn btn-danger removeProductButton" data-product-group="productGroup${productCount}">Удалить</button>
                             </div>
@@ -134,7 +150,7 @@
                             data: JSON.stringify(orderData),
                             contentType: "application/json",
                             success: () => alert('Bum!'),
-                            error: () => alert('error!')
+                            // error: () => alert('error!')
                         });
                     });
                 });
