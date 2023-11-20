@@ -12,18 +12,6 @@ public class Product {
 
     private String name;
 
-    private boolean inStock = true;
-
-    public Product(Long id, String name, boolean inStock) {
-        this.id = id;
-        this.name = name;
-        this.inStock = inStock;
-    }
-
-    public void setInStock(boolean inStock) {
-        this.inStock = inStock;
-    }
-
     public Long getId() {
         return id;
     }

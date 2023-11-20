@@ -99,7 +99,7 @@ public class KitchenOrderController {
         return "/order/new_order";
     }
 
-    @DeleteMapping ("/{id}/delete")
+    @GetMapping ("/{id}/delete")
     public String deleteOrder(@PathVariable("id") Long id) {
         kitchenOrderService.deleteKitchenOrderById(id);
         return "redirect:/orders";

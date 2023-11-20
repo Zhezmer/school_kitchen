@@ -10,29 +10,31 @@ import org.danikzhezmer.schoolkitchen.entity.KitchenOrder;
 import org.danikzhezmer.schoolkitchen.entity.KitchenOrderItem;
 import org.danikzhezmer.schoolkitchen.repository.KitchenOrderItemRepository;
 import org.danikzhezmer.schoolkitchen.repository.KitchenOrderRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import java.io.File;
+
 import java.io.FileOutputStream;
 import java.time.Instant;
 import java.util.List;
 
+
 @Service
 public class OrderToExcelService {
+    private static final Logger log =
+            LoggerFactory.getLogger(OrderToExcelService.class);
 
-    private final KitchenOrderRepository kitchenOrderRepository;
     private final KitchenOrderItemRepository kitchenOrderItemRepository;
 
-    public OrderToExcelService(KitchenOrderRepository kitchenOrderRepository, KitchenOrderItemRepository kitchenOrderItemRepository) {
-        this.kitchenOrderRepository = kitchenOrderRepository;
+    public OrderToExcelService(KitchenOrderItemRepository kitchenOrderItemRepository) {
         this.kitchenOrderItemRepository = kitchenOrderItemRepository;
     }
 
-    public String generate(Long orderId) {
-        KitchenOrder order = kitchenOrderRepository.findById(orderId).orElse(null);
-        List<KitchenOrderItem> orderItems = kitchenOrderItemRepository.findAllByKitchenOrderId(orderId);
+    public String generate(KitchenOrder order) {
+        List<KitchenOrderItem> orderItems = kitchenOrderItemRepository.findAllByKitchenOrderId(order.getId());
         XSSFWorkbook workbook = new XSSFWorkbook();
-        XSSFSheet sheet = workbook.createSheet("Order " + orderId);
+        XSSFSheet sheet = workbook.createSheet("Order " + order.getId());
 
         Row row = sheet.createRow(0);
         Cell groupName = row.createCell(0);
@@ -72,10 +74,10 @@ public class OrderToExcelService {
             orderRow.createCell(1).setCellValue(orderItem.getMeasure());
             orderRow.createCell(2).setCellValue(orderItem.getQty());
         }
-        String fileName = System.getProperty("java.io.tmpdir") + groupName + "`s order " + orderId + Instant.now().getNano() + ".xlsx";
+        String fileName = System.getProperty("java.io.tmpdir") + groupName + "`s order " + order.getId() + Instant.now().getNano() + ".xlsx";
         try (FileOutputStream out = new FileOutputStream(fileName)) {
             workbook.write(out);
-            System.out.println("document written successfully on disk.");
+            log.info("document written successfully on disk. Filename: {}", fileName);
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException("Error while generating file");

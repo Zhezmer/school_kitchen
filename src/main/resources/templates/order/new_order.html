@@ -148,10 +148,16 @@
                             type: "POST",
                             url: "/orders/new_order",
                             data: JSON.stringify(orderData),
-                            contentType: "application/json",
-                            success: () => alert('Bum!'),
-                            // error: () => alert('error!')
-                        });
+                            contentType: "application/json"
+                        }).then(
+                            function(response) {
+                                // Обработка успешного ответа
+                                alert('Bum!');
+                            },
+                            function(error) {
+                                window.location.href = "/orders";
+                            }
+                        );
                     });
                 });
 

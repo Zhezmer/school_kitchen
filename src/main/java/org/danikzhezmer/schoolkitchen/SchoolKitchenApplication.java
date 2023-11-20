@@ -9,32 +9,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
-
+//@EnableScheduling
 @SpringBootApplication
-public class SchoolKitchenApplication implements CommandLineRunner {
+public class SchoolKitchenApplication {
 
-    @Autowired
-    private KitchenOrderRepository kitchenOrderRepository;
 
-    @Autowired
-    private SchoolGroupRepository schoolGroupRepository;
-
-    @Autowired
-    private ProductRepository productRepository;
-
-    @Autowired
-    private KitchenOrderItemRepository kitchenOrderItemRepository;
     public static void main(String[] args) {
         SpringApplication.run(SchoolKitchenApplication.class, args);
     }
-    @Transactional
-    @Override
-    public void run(String... args) throws Exception {
-
-    }
+}
 
 
-    }

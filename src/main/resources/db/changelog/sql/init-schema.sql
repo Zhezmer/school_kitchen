@@ -2,9 +2,8 @@ drop table if exists kitchen_order_item, kitchen_order, school_group, product, u
 
 create table if not exists product
 (
-    id   serial
-        primary key,
-    name varchar(25) not null
+    id      serial primary key,
+    name    varchar(25) not null
 );
 
 create table if not exists school_group
