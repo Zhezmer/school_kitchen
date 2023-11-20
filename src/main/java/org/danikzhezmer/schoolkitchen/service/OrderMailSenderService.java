@@ -31,7 +31,7 @@ public class OrderMailSenderService {
 
         helper.setFrom("schoolapp.mevoot@gmail.com");
         helper.setTo("d.zhezmer@gmail.com");
-        helper.setSubject(schoolGroupService.findById(orderId).getName() + " order");//TODO add groupName
+        helper.setSubject(schoolGroupService.findById(orderId).getName() + " order");
         helper.setText("   ");
 
         File orderFile = new File(filename);
