@@ -15,7 +15,12 @@
         <td>
             <div>
                 <a style="margin-left: 35px; margin-bottom: 3px" class="btn btn-primary" th:href="${'/orders/' + order.id}">To order</a>
-                <a style="margin-left: 2px; margin-bottom: 3px" class="btn btn-warning" th:href="${'/orders/' + order.id + '/edit'}">Edit</a>
+                <th:block th:if="${!order.getSent()}">
+                    <a style="margin-left: 2px" class="btn btn-warning" th:href="${'/orders/' + order.id + '/edit'}">Edit</a>
+                </th:block>
+                <th:block th:unless="${!order.getSent()}">
+                    <p style="margin-top: 13px" class="btn btn-info">Заказ отправлен</p>
+                </th:block>
                 <a style="margin-left: 2px; margin-bottom: 3px" class="btn btn-danger" th:href="${'/orders/' + order.id + '/delete'}">Delete</a>
 
             </div>

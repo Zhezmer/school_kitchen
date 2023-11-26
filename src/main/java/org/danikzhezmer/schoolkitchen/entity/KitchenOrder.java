@@ -2,9 +2,9 @@ package org.danikzhezmer.schoolkitchen.entity;
 
 import jakarta.persistence.*;
 import org.springframework.format.annotation.DateTimeFormat;
+
 import java.time.LocalDate;
 import java.util.List;
-
 
 
 @Entity
@@ -27,6 +27,9 @@ public class KitchenOrder {
     @OneToMany(mappedBy = "kitchenOrder", fetch = FetchType.LAZY)
     private List<KitchenOrderItem> kitchenOrderItems;
 
+    private Boolean isSent;
+
+
     public KitchenOrder(Long id, SchoolGroup group, List<KitchenOrderItem> kitchenOrderItems, LocalDate creationDate, LocalDate orderDateTo) {
         this.id = id;
         this.group = group;
@@ -43,7 +46,6 @@ public class KitchenOrder {
     public List<KitchenOrderItem> getKitchenOrderItems() {
         return kitchenOrderItems;
     }
-
 
 
     public Long getId() {
@@ -78,6 +80,13 @@ public class KitchenOrder {
         this.orderDateTo = orderDateTo;
     }
 
+    public Boolean getSent() {
+        return isSent;
+    }
+
+    public void setSent(Boolean sent) {
+        isSent = sent;
+    }
 
     @Override
     public String toString() {

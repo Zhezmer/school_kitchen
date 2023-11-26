@@ -21,7 +21,6 @@ import java.util.List;
 public class KitchenOrderController {
 
 
-
     private final KitchenOrderService kitchenOrderService;
     private final KitchenOrderItemService kitchenOrderItemService;
     private final SchoolGroupService schoolGroupService;
@@ -71,35 +70,39 @@ public class KitchenOrderController {
     @GetMapping("/{id}/edit")
     public String editOrder(@PathVariable("id") Long id, Model model) {
         KitchenOrder kitchenOrder = kitchenOrderService.findById(id);
-        List<KitchenOrderItem> kitchenOrderItems = kitchenOrderItemService.findAllByKitchenOrderId(id);
+        if (kitchenOrder.getSent()) {
+            return "redirect:/orders/{id}";
+        } else {
+            List<KitchenOrderItem> kitchenOrderItems = kitchenOrderItemService.findAllByKitchenOrderId(id);
 
-        KitchenOrderDto dto = new KitchenOrderDto();
-        dto.setOrderId(kitchenOrder.getId());
-        dto.setGroupId(kitchenOrder.getGroup().getId());
-        dto.setOrderDateTo(kitchenOrder.getOrderDateTo());
-        dto.setCreationDate(kitchenOrder.getCreationDate());
-        dto.setItems(
-                kitchenOrderItems.stream()
-                        .map(kitchenOrderItem -> {
-                            KitchenOrderItemDto item = new KitchenOrderItemDto();
-                            item.setMeasure(kitchenOrderItem.getMeasure());
-                            item.setProductId(kitchenOrderItem.getProduct().getId());
-                            item.setQty(kitchenOrderItem.getQty());
-                            return item;
-                        }).toList()
-        );
+            KitchenOrderDto dto = new KitchenOrderDto();
+            dto.setOrderId(kitchenOrder.getId());
+            dto.setGroupId(kitchenOrder.getGroup().getId());
+            dto.setOrderDateTo(kitchenOrder.getOrderDateTo());
+            dto.setCreationDate(kitchenOrder.getCreationDate());
+            dto.setItems(
+                    kitchenOrderItems.stream()
+                            .map(kitchenOrderItem -> {
+                                KitchenOrderItemDto item = new KitchenOrderItemDto();
+                                item.setMeasure(kitchenOrderItem.getMeasure());
+                                item.setProductId(kitchenOrderItem.getProduct().getId());
+                                item.setQty(kitchenOrderItem.getQty());
+                                return item;
+                            }).toList()
+            );
 
-        List<SchoolGroup> groups = schoolGroupService.findAll();
-        List<Product> products = productService.findAll();
+            List<SchoolGroup> groups = schoolGroupService.findAll();
+            List<Product> products = productService.findAll();
 
-        model.addAttribute("groups", groups);
-        model.addAttribute("products", products);
+            model.addAttribute("groups", groups);
+            model.addAttribute("products", products);
 
-        model.addAttribute("order", dto);
-        return "/order/new_order";
+            model.addAttribute("order", dto);
+            return "/order/new_order";
+        }
     }
 
-    @GetMapping ("/{id}/delete")
+    @GetMapping("/{id}/delete")
     public String deleteOrder(@PathVariable("id") Long id) {
         kitchenOrderService.deleteKitchenOrderById(id);
         return "redirect:/orders";

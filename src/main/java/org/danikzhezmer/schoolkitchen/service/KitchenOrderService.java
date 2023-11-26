@@ -44,6 +44,7 @@ public class KitchenOrderService {
         kitchenOrder.setCreationDate(LocalDate.now());
         kitchenOrder.setOrderDateTo(dto.getOrderDateTo());
         kitchenOrder.setGroup(group);
+        kitchenOrder.setSent(false);
 
         KitchenOrder savedOrder = kitchenOrderRepository.save(kitchenOrder);
 
@@ -81,5 +82,13 @@ public class KitchenOrderService {
         kitchenOrderRepository.deleteById(id);
     }
 
+    public void markAsSent(KitchenOrder order){
+        order.setSent(true);
+        kitchenOrderRepository.save(order);
+    }
+
+    public List<KitchenOrder> findNotSendedOrders(){
+        return kitchenOrderRepository.findAllByIsSent(false);
+    }
 
 }

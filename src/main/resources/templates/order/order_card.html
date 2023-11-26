@@ -30,9 +30,13 @@
         </tbody>
     </table>
     <a style=" width: 150px" class="btn btn-secondary" th:href="${'/orders/groupOrders/' + order.group.name}">Back</a>
-    <a style="margin-left: 2px" class="btn btn-warning" th:href="${'/orders/' + order.id + '/edit'}">Edit</a>
-    <a style="margin-left: 2px" class="btn btn-success" th:href="${'/orders/' + order.id + '/xlsx'}">Send</a>
-
+    <th:block th:if="${!order.getSent()}">
+        <a style="margin-left: 2px" class="btn btn-warning" th:href="${'/orders/' + order.id + '/edit'}">Edit</a>
+        <a style="margin-left: 2px" class="btn btn-success" th:href="${'/orders/' + order.id + '/xlsx'}">Send</a>
+    </th:block>
+    <th:block th:unless="${!order.getSent()}">
+        <p style="margin-top: 15px" class="btn btn-info">Заказ отправлен</p>
+    </th:block>
 </div>
 
 </body>

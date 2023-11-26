@@ -11,6 +11,11 @@ public interface KitchenOrderRepository  extends JpaRepository<KitchenOrder, Lon
     List<KitchenOrder> findKitchenOrderByGroupName(String groupName);
 
 
+    List<KitchenOrder> findAllByIsSent(Boolean isSent);
+
+
+
+
 
 
 }

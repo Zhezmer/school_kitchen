@@ -21,7 +21,8 @@ create table if not exists kitchen_order
         constraint fk_group
             references school_group,
     creation_date timestamp default CURRENT_DATE not null,
-    order_date_to timestamp default CURRENT_DATE not null
+    order_date_to timestamp default CURRENT_DATE not null,
+    is_sent       boolean default false not null
 );
 
 create table if not exists kitchen_order_item
