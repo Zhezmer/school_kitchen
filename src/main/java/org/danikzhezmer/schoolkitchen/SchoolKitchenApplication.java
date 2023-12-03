@@ -13,7 +13,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
-//@EnableScheduling
+@EnableScheduling
 @SpringBootApplication
 public class SchoolKitchenApplication {
 

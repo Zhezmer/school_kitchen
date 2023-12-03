@@ -47,23 +47,23 @@
                     <div th:id="'productGroup' + ${iter.index}">
                         <label>
                             <select class="form-control" name="productIds" required>
-                                <option value="">Выберите продукт</option>
+                                <option value="">Choose product</option>
                                 <option th:each="product : ${products}" th:text="${product.name}" th:value="${product.id}" th:selected="${product.id == item.productId}"></option>
                             </select>
                         </label>
                         <label>
                             <select class="form-control" name="measures" required>
-                                <option value="" disabled selected>Выберите единицу измерения</option>
-                                <option value="штуки" th:selected="${item.measure == 'штуки'}">Штуки</option>
-                                <option value="кг" th:selected="${item.measure == 'кг'}">Кг</option>
-                                <option value="литры" th:selected="${item.measure == 'литры'}">Литры</option>
+                                <option value="" disabled selected>Choose unit of measure</option>
+                                <option value="штуки" th:selected="${item.measure == 'unit'}">Unit</option>
+                                <option value="кг" th:selected="${item.measure == 'kg'}">Kg</option>
+                                <option value="литры" th:selected="${item.measure == 'liter'}">Liter</option>
                             </select>
                         </label>
                         <!--                        <input class="form-control" type="text" name="measures" placeholder="Единица измерения" th:value="${item.measure}" required>-->
                         <label>
-                            <input class="form-control" type="number" name="qtys" placeholder="Количество" th:value="${item.qty}" required>
+                            <input class="form-control" type="number" name="qtys" placeholder="quantity" th:value="${item.qty}" required>
                         </label>
-                        <button type="button" class="btn btn-danger removeProductButton" th:data-product-group="'productGroup' + ${iter.index}">Удалить</button>
+                        <button type="button" class="btn btn-danger removeProductButton" th:data-product-group="'productGroup' + ${iter.index}">Delete</button>
                     </div>
 
 
@@ -72,7 +72,7 @@
                     <!-- Ваш код для случая, когда список пуст -->
                     <div id="productFields"></div>
                 </div>
-                <button style="margin-top: 15px" type="button" id="addProductButton" class="btn btn-primary">Добавить продукт</button>
+                <button style="margin-top: 15px" type="button" id="addProductButton" class="btn btn-primary">Add product</button>
                 <p><input style="margin-top: 20px" class="btn btn-primary" type="submit" value="Submit"/> <input style="margin-top: 20px" class="btn btn-primary" type="reset" value="Reset"/></p>
             </form>
 
@@ -91,18 +91,18 @@
                         let productFieldsHtml = `
                             <div id="productGroup${productCount}">
                                 <select class="form-control" name="productIds" required>
-                                    <option value="">Выберите продукт</option>
+                                    <option value="">Choose product</option>
                                     ${productOptions}
                                     <!-- Здесь вы можете использовать цикл Thymeleaf для заполнения опций продуктов -->
                                 </select>
                                 <select class="form-control" name="measures" required>
-                                   <option value="">Выберите единицу измерения</option>
-                                     <option value="штуки">Штуки</option>
-                                     <option value="кг" >Кг</option>
-                                     <option value="литры">Литры</option>
+                                   <option value="">Choose unit of measure</option>
+                                     <option value="יחידות">unit</option>
+                                     <option value="ק"ג >kg</option>
+                                     <option value="ליטר">liter</option>
                                  </select>
-                                <input class="form-control" type="number" name="qtys" placeholder="Количество" required>
-                                <button type="button" class="btn btn-danger removeProductButton" data-product-group="productGroup${productCount}">Удалить</button>
+                                <input class="form-control" type="number" name="qtys" placeholder="quantity" required>
+                                <button type="button" class="btn btn-danger removeProductButton" data-product-group="productGroup${productCount}">Delete</button>
                             </div>
                         `;
                         $("#productFields").append(productFieldsHtml);

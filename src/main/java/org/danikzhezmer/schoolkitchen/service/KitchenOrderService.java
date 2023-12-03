@@ -87,7 +87,7 @@ public class KitchenOrderService {
         kitchenOrderRepository.save(order);
     }
 
-    public List<KitchenOrder> findNotSendedOrders(){
+    public List<KitchenOrder> findNotSentOrders(){
         return kitchenOrderRepository.findAllByIsSent(false);
     }
 

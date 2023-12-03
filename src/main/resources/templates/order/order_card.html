@@ -35,7 +35,7 @@
         <a style="margin-left: 2px" class="btn btn-success" th:href="${'/orders/' + order.id + '/xlsx'}">Send</a>
     </th:block>
     <th:block th:unless="${!order.getSent()}">
-        <p style="margin-top: 15px" class="btn btn-info">Заказ отправлен</p>
+        <p style="margin-top: 15px" class="btn btn-info">Already Sent</p>
     </th:block>
 </div>
 

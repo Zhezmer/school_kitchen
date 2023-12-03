@@ -23,11 +23,14 @@ public class OrderMailSenderService {
     private final JavaMailSender emailSender;
     private final OrderToExcelService orderToExcelService;
 
+    private final SchoolGroupService schoolGroupService;
+
     private final KitchenOrderService kitchenOrderService;
 
-    public OrderMailSenderService(JavaMailSender emailSender, OrderToExcelService orderToExcelService, KitchenOrderRepository kitchenOrderRepository, KitchenOrderService kitchenOrderService) {
+    public OrderMailSenderService(JavaMailSender emailSender, OrderToExcelService orderToExcelService, SchoolGroupService schoolGroupService, KitchenOrderRepository kitchenOrderRepository, KitchenOrderService kitchenOrderService) {
         this.emailSender = emailSender;
         this.orderToExcelService = orderToExcelService;
+        this.schoolGroupService = schoolGroupService;
         this.kitchenOrderService = kitchenOrderService;
     }
 
@@ -51,35 +54,35 @@ public class OrderMailSenderService {
         kitchenOrderService.markAsSent(order);
         log.info("email send");
     }
-   // @Scheduled(cron = "0 0 20 * * SUN-THU")
-   @Scheduled(fixedDelay = 45000)
-   public void sendAll() throws MessagingException {
-       List<KitchenOrder> all = kitchenOrderService.findNotSendedOrders();
-       if(all.isEmpty()){
-           log.info("No unsent orders to send");
-           return;
-       }
-       MimeMessage message = emailSender.createMimeMessage();
-       MimeMessageHelper helper = new MimeMessageHelper(message, true);
 
-       helper.setFrom("schoolapp.mevoot@gmail.com");
-       helper.setTo("d.zhezmer@gmail.com");
-       helper.setSubject("Batch unsent orders");
+    @Scheduled(cron = "0 0 20 * * SUN-THU")
+    public void sendAll() throws MessagingException {
+        List<KitchenOrder> all = kitchenOrderService.findNotSentOrders();
+        if(all.isEmpty()){
+            log.info("No unsent orders to send");
+            return;
+        }
+        MimeMessage message = emailSender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(message, true);
 
-       StringBuilder text = new StringBuilder("List of unsent orders:\n");
+        helper.setFrom("schoolapp.mevoot@gmail.com");
+        helper.setTo("d.zhezmer@gmail.com");
+        helper.setSubject("Batch unsent orders");
 
-       for (KitchenOrder order : all) {
-           String filename = orderToExcelService.generate(order);
-           File orderFile = new File(filename);
-           FileSystemResource file = new FileSystemResource(orderFile);
-           helper.addAttachment(orderFile.getName(), file);
-           text.append("Order ID: ").append(order.getId()).append("\n");
-           kitchenOrderService.markAsSent(order);
-       }
+        StringBuilder text = new StringBuilder("List of unsent orders:\n");
 
-       helper.setText(text.toString());
-       emailSender.send(message);
-       log.info("Batch email send");
+        for (KitchenOrder order : all) {
+            String filename = orderToExcelService.generate(order);
+            File orderFile = new File(filename);
+            FileSystemResource file = new FileSystemResource(orderFile);
+            helper.addAttachment(orderFile.getName(), file);
+            text.append("Order ID: ").append(order.getId()).append("\n");
+            kitchenOrderService.markAsSent(order);
+        }
 
-   }
+        helper.setText(text.toString());
+        emailSender.send(message);
+        log.info("Batch email send");
+
+    }
 }

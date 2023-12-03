@@ -31,7 +31,7 @@
         </tr>
         </tbody>
     </table>
-    <a class="btn btn-success" th:href="${'/products/new_product'}">Create New Product</a>
+    <a sec:authorize="hasRole('ROLE_ADMIN')" class="btn btn-success" th:href="${'/products/new_product'}">Create New Product</a>
 </div>
 </body>
 </html>
