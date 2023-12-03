@@ -18,10 +18,8 @@ public class StatisticService  {
         this.statisticDAO = statisticDAO;
     }
 
-    public List<Statistic> getStatistics(String groupName,
-                                         LocalDate dateFrom,
-                                         LocalDate dateTo,
-                                         List<String> productNames) {
+    public List<Statistic> getStatistics(String groupName, LocalDate dateFrom, LocalDate dateTo, List<String> productNames) {
+
 
         return statisticDAO.getStat(groupName, dateFrom, dateTo, productNames);
     }
