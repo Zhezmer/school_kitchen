@@ -51,4 +51,29 @@ public class StatisticDAO {
                         rs.getString("measure")
                 ));
     }
+
+    public List<Statistic> getStatForAllGroupsAndProducts(LocalDate dateFrom, LocalDate dateTo) {
+        final String STATISTIC_QUERY = """
+            SELECT sg.name as groupName,
+                   p.name as product,
+                   sum(koi.qty) as total_quantity,
+                   koi.measure
+            FROM kitchen_order ko
+            JOIN kitchen_order_item koi on ko.id = koi.kitchen_order_id
+            join product p on p.id = koi.product_id
+            join school_group sg on sg.id = ko.group_id
+            WHERE ko.creation_date >= ?
+              and ko.creation_date <= ?
+            group by sg.name, p.name, koi.measure""";
+
+        return jdbcTemplate.query(
+                STATISTIC_QUERY,
+                new Object[]{dateFrom, dateTo},
+                (rs, rowNum) -> new Statistic(
+                        rs.getString("groupName"),
+                        rs.getString("product"),
+                        rs.getInt("total_quantity"),
+                        rs.getString("measure")
+                ));
+    }
 }
