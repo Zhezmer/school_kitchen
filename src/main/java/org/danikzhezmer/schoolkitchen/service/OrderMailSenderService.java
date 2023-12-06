@@ -100,7 +100,6 @@ public class OrderMailSenderService {
 
         StringBuilder text = new StringBuilder("Weekly Statistics Report:\n");
 
-        // Create and attach Excel file
         String filename = statisticService.generateAndSaveExcel();
         File statFile = new File(filename);
         FileSystemResource file = new FileSystemResource(statFile);

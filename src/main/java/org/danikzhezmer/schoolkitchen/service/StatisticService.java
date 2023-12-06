@@ -4,21 +4,14 @@ package org.danikzhezmer.schoolkitchen.service;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.danikzhezmer.schoolkitchen.entity.Statistic;
 import org.danikzhezmer.schoolkitchen.repository.StatisticDAO;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
-
-import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.temporal.TemporalAdjusters;
 import java.util.List;
-
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-
 import java.io.FileOutputStream;
-import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -42,7 +35,8 @@ public class StatisticService {
     public String generateAndSaveExcel() {
         LocalDate currentDate = LocalDate.now();
         LocalDate endDate = currentDate.with(TemporalAdjusters.lastDayOfMonth());
-        LocalDate startDate = currentDate.with(TemporalAdjusters.firstDayOfMonth());;
+        LocalDate startDate = currentDate.with(TemporalAdjusters.firstDayOfMonth());
+        ;
 
         List<Statistic> allStatistics = statisticDAO.getStatForAllGroupsAndProducts(startDate, endDate);
 
