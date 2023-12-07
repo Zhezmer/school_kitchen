@@ -1,100 +1,45 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
   <meta charset="UTF-8">
-  <title>Mevoot application</title>
+  <title>Title</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-  <style>
-    @media (max-width: 768px) {
-      .sidebar {
-        position: fixed;
-        top: 0;
-        right: -250px;
-        width: 250px;
-        height: 100%;
-        background-color: #333;
-        padding-top: 50px;
-        transition: right 0.3s;
-      }
-
-      .sidebar a {
-        padding: 15px;
-        text-decoration: none;
-        font-size: 20px;
-        color: #fff;
-        display: block;
-      }
-
-      .sidebar a:hover {
-        background-color: #555;
-      }
-
-      .navbar-toggler {
-        order: -1;
-      }
-    }
-
-    @media (min-width: 768px) {
-      .sidebar-items {
-        display: none;
-      }
-    }
-  </style>
 </head>
 <body>
-
 <div th:fragment="head">
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" th:href="@{/orders/new_order}">Navigation</a>
+
+    <a class="navbar-brand" th:href="${'/orders/new_order'}">Navigation</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ml-auto">
-        <div class="sidebar-items">
+        <li class="nav-item">
+          <a class="nav-link" th:href="${'/products'}">Products</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" th:href="${'/orders'}">Orders</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" th:href="${'/groups'}">Groups</a>
+        </li>
+        <div sec:authorize="hasRole('ROLE_ADMIN')">
           <li class="nav-item">
-            <a class="nav-link" th:href="@{/products}">Products</a>
+            <a class="nav-link" th:href="${'/statistic'}">Statistic</a>
           </li>
         </div>
-        <div class="sidebar-items">
+        <div sec:authorize="hasRole('ROLE_ADMIN')">
           <li class="nav-item">
-            <a class="nav-link" th:href="@{/orders}">Orders</a>
+            <a class="nav-link" th:href="${'/users'}">Users</a>
           </li>
         </div>
-        <div class="sidebar-items">
-          <li class="nav-item">
-            <a class="nav-link" th:href="@{/groups}">Groups</a>
-          </li>
-        </div>
-        <div sec:authorize="hasRole('ROLE_ADMIN')" class="sidebar-items">
-          <li class="nav-item">
-            <a class="nav-link" th:href="@{/statistic}">Statistic</a>
-          </li>
-        </div>
-        <div sec:authorize="hasRole('ROLE_ADMIN')" class="sidebar-items">
-          <li class="nav-item">
-            <a class="nav-link" th:href="@{/users}">Users</a>
-          </li>
-        </div>
-        <div class="sidebar-items">
-          <li class="nav-item">
-            <a class="nav-link" th:href="@{/logout}">Logout</a>
-          </li>
-        </div>
+        <li class="nav-item">
+          <a class="nav-link" th:href="${'/logout'}">Logout</a>
+        </li>
       </ul>
-    </div>
-
-    <!-- Sidebar -->
-    <div class="sidebar">
-      <a th:href="@{/products}" onclick="toggleSidebar()">Products</a>
-      <a th:href="@{/orders}"  onclick="toggleSidebar()">Orders</a>
-      <a th:href="@{/groups}"  onclick="toggleSidebar()">Groups</a>
-      <a th:href="@{/statistic}"  onclick="toggleSidebar()">Statistic</a>
-      <a th:href="@{/users}" onclick="toggleSidebar()">Users</a>
-      <a th:href="@{/logout}" onclick="toggleSidebar()">Logout</a>
     </div>
   </nav>
 </div>
@@ -103,19 +48,5 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-<script>
-  // Активация бокового меню
-  function toggleSidebar() {
-    const sidebar = document.querySelector('.sidebar');
-    const links = sidebar.querySelectorAll('a');
-    const paths = ['/products', '/orders', '/groups', '/statistic', '/users', '/logout'];
-
-    links.forEach((link, index) => {
-      link.href = paths[index];
-    });
-
-    sidebar.style.right = sidebar.style.right === '0px' ? '-250px' : '0';
-  }
-</script>
 </body>
 </html>
