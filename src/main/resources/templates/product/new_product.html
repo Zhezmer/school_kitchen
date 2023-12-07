@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Mevoot application</title>
 
     <div th:replace = "~{headers/bootstrap :: boot}"></div>
 </head>
@@ -12,7 +12,7 @@
    <div th:replace = "~{headers/header :: head}"></div>
     <div class="row mt-4">
         <div class="col-md-12">
-            <h1>New Product</h1>
+            <h1>מוצר חדש</h1>
 
             <div class="card">
                 <div class="card-body">
@@ -20,9 +20,9 @@
                         <input type="hidden" th:field="*{id}"/>
                         <div class="form-group">
 
-                            <input type="text" class="form-control" id="name" placeholder="Product Name" th:field="*{name}"/>
+                            <input type="text" class="form-control" id="name" placeholder="שם של המוצר" th:field="*{name}"/>
                         </div>
-                        <button style="margin-top: 10px" class="btn btn-primary" type="submit">Save</button>
+                        <button style="margin-top: 10px" class="btn btn-primary" type="submit">לשמור</button>
                     </form>
                 </div>
             </div>

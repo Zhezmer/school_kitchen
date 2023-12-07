@@ -2,33 +2,33 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Mevoot application</title>
     <div th:replace = "~{headers/bootstrap :: boot}"></div>
 </head>
 <body>
 <div class="container">
     <div th:replace = "~{headers/header :: head}"></div>
-    <h2 th:text="${groupName}"> orders</h2>
+    <h2 th:text="${groupName}"> הזמנות</h2>
     <table>
     <tr th:each="order : ${group_orders}">
         <td th:text="${order.creationDate}"></td>
         <td>
             <div>
-                <a style="margin-left: 35px; margin-bottom: 3px" class="btn btn-primary" th:href="${'/orders/' + order.id}">To order</a>
+                <a style="margin-left: 35px; margin-bottom: 3px" class="btn btn-primary" th:href="${'/orders/' + order.id}">ל הזמנה</a>
                 <th:block th:if="${!order.getSent()}">
-                    <a style="margin-left: 2px" class="btn btn-warning" th:href="${'/orders/' + order.id + '/edit'}">Edit</a>
+                    <a style="margin-left: 2px" class="btn btn-warning" th:href="${'/orders/' + order.id + '/edit'}">לערוך</a>
                 </th:block>
                 <th:block th:unless="${!order.getSent()}">
-                    <p style="margin-top: 13px" class="btn btn-info">Already Sent</p>
+                    <p style="margin-top: 13px" class="btn btn-info">הזמנה נשלחה</p>
                 </th:block>
-                <a style="margin-left: 2px; margin-bottom: 3px" class="btn btn-danger" th:href="${'/orders/' + order.id + '/delete'}">Delete</a>
+                <a style="margin-left: 2px; margin-bottom: 3px" class="btn btn-danger" th:href="${'/orders/' + order.id + '/delete'}">למחוק</a>
 
             </div>
         </td>
     </tr>
     </table>
-    <a style="margin: 20px 2px 20px 0" class="btn btn-success" th:href="${'/orders/new_order'}">Create New Order</a>
-    <a style="margin: 20px 20px 20px 0" class="btn btn-secondary" href="/orders">Back</a>
+    <a style="margin: 20px 2px 20px 0" class="btn btn-success" th:href="${'/orders/new_order'}">הזמנה חדשה</a>
+    <a style="margin: 20px 20px 20px 0" class="btn btn-secondary" href="/orders">לחזור</a>
 </div>
 </body>
 </html>

@@ -2,7 +2,7 @@
 <html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Mevoot application</title>
     <div th:replace = "~{headers/bootstrap :: boot}"></div>
     </head>
 <body>
@@ -12,8 +12,8 @@
     <table class="table table-striped">
         <thead>
         <tr>
-            <th>Group name</th>
-            <th>Actions</th>
+            <th>שם קבוצה</th>
+            <th>פעולות</th>
         </tr>
         </thead>
         <tbody>
@@ -21,14 +21,14 @@
             <td th:text="${group.name}"></td>
             <td>
                 <div>
-                    <a class="btn btn-primary" th:href="${'/groups/' + group.id}">To Group</a>
-                    <a sec:authorize="hasRole('ROLE_ADMIN')" class="btn btn-danger" th:href="${'/groups/' + group.id + '/delete'}">Delete</a>
+                    <a class="btn btn-primary" th:href="${'/groups/' + group.id}">לקבוצה</a>
+                    <a sec:authorize="hasRole('ROLE_ADMIN')" class="btn btn-danger" th:href="${'/groups/' + group.id + '/delete'}">למחוק</a>
                 </div>
             </td>
         </tr>
         </tbody>
     </table>
-    <a class="btn btn-success" th:href="${'/groups/new_group'}">Create New Group</a>
+    <a class="btn btn-success" th:href="${'/groups/new_group'}">קבוצה חדשה</a>
 </div>
 </body>
 </html>

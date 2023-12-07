@@ -2,8 +2,8 @@
 <html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-    <!-- Подключаем стили Bootstrap -->
+    <title>Mevoot application</title>
+
     <div th:replace = "~{headers/bootstrap :: boot}"></div>
 
 </head>
@@ -11,12 +11,12 @@
 <div class="container">
 
     <div th:replace = "~{headers/header :: head}"></div>
-    <h1 class="mt-4">Product List</h1>
+    <h1 class="mt-4">רשימת מוצרים</h1>
     <table class="table table-striped">
         <thead>
         <tr>
-            <th>Product name</th>
-            <th>Actions</th>
+            <th>שם של המוצר</th>
+            <th>פעולות</th>
         </tr>
         </thead>
         <tbody>
@@ -24,8 +24,8 @@
             <td th:text="${product.name}"></td>
             <td>
                 <div>
-                    <a class="btn btn-primary" th:href="${'/products/' + product.id}">To Product</a>
-                    <a sec:authorize="hasRole('ROLE_ADMIN')" class="btn btn-danger" th:href="${'/products/' + product.id + '/delete'}">Delete</a>
+                    <a class="btn btn-primary" th:href="${'/products/' + product.id}">למוצר</a>
+                    <a sec:authorize="hasRole('ROLE_ADMIN')" class="btn btn-danger" th:href="${'/products/' + product.id + '/delete'}">למחוק</a>
                 </div>
             </td>
         </tr>

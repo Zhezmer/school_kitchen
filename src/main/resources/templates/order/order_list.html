@@ -2,26 +2,26 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Mevoot application</title>
     <div th:replace = "~{headers/bootstrap :: boot}"></div>
 </head>
 <body>
 <div class="container">
     <div th:replace = "~{headers/header :: head}"></div>
-    <h2>Order list</h2>
+    <h2>רשימת הזמנות</h2>
     <table>
         <tr th:each="group : ${groups}">
             <td th:text="${group.name}"></td>
             <td>
                 <div>
                     <a style="margin-left: 50px" class="btn btn-primary"
-                       th:href="${'/orders/groupOrders/' + group.name}">To orders</a>
+                       th:href="${'/orders/groupOrders/' + group.name}">להזמנות</a>
                 </div>
 
             </td>
         </tr>
     </table>
-    <a style="margin: 20px 2px 20px 0" class="btn btn-success" th:href="${'/orders/new_order'}">Create New Order</a>
+    <a style="margin: 20px 2px 20px 0" class="btn btn-success" th:href="${'/orders/new_order'}">הזמנה חדשה</a>
 
 </div>
 </body>

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>New Group</title>
+    <title>Mevoot application</title>
     <div th:replace = "~{headers/bootstrap :: boot}"></div>
     </head>
 <body>
@@ -11,16 +11,16 @@
     <div th:replace = "~{headers/header :: head}"></div>
     <div class="row mt-4">
         <div class="col-md-6 offset-md-3">
-            <h2>New Group</h2>
+            <h2>קבוצה חדשה</h2>
 
             <form method="post" th:action="@{/groups/new_group}" th:object="${group}">
                 <div class="form-group">
                     <input type="hidden" th:field="*{id}"/>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Group Name" th:field="*{name}"/>
+                    <input type="text" class="form-control" placeholder="שם של הקבוצה" th:field="*{name}"/>
                 </div>
-                <button style="margin-top: 20px" class="btn btn-primary" type="submit">Next</button>
+                <button style="margin-top: 20px" class="btn btn-primary" type="submit">לשמור</button>
             </form>
         </div>
     </div>

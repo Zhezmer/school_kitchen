@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Mevoot aplication</title>
+    <title>Mevoot application</title>
   <div th:replace = "~{headers/bootstrap :: boot}"></div>
 </head>
 <body>
@@ -13,26 +13,26 @@
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-4 text-center">
-        <label class="form-label" for="inputUsername"><b>Имя пользователя</b></label>
+        <label class="form-label" for="inputUsername"><b>שם משתמש</b></label>
         <div class="input-group">
-          <input type="text" name="username" id="inputUsername" class="form-control" placeholder="Введите имя пользователя">
+          <input type="text" name="username" id="inputUsername" class="form-control" placeholder="תכניסו שם משתמש">
         </div>
       </div>
     </div>
     <br>
     <div class="row justify-content-center">
       <div class="col-4 text-center">
-        <label class="form-label" for="inputPassword"><b>Пароль</b></label>
+        <label class="form-label" for="inputPassword"><b>סיסמה</b></label>
         <div class="input-group">
           <input type="password" name="password" id="inputPassword" class="form-control"
-                 placeholder="Введите пароль">
+                 placeholder="תכניסו סיסמה">
         </div>
       </div>
     </div>
     <br>
     <div class="row justify-content-center" th:if="${param.error}">
       <div class="alert alert-danger" role="alert">
-        <div class="text-danger" for="inputPassword">Неправильные имя или пароль</div>
+        <div class="text-danger" for="inputPassword">שם משתמש או סיסמא שגוי</div>
       </div>
     </div>
     <br>
