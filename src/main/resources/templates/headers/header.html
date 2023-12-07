@@ -1,109 +1,48 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-        }
-
-        .navbar {
-            background-color: #f8f9fa;
-            padding: 10px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        .navbar-brand {
-            font-size: 24px;
-            font-weight: bold;
-            color: #007bff;
-            text-decoration: none;
-        }
-
-        .navbar-toggler {
-            border: none;
-            background: transparent;
-            cursor: pointer;
-        }
-
-        .navbar-toggler-icon {
-            width: 24px;
-            height: 24px;
-            background-color: #007bff;
-            border-radius: 4px;
-        }
-
-        .navbar-nav {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .nav-item {
-            display: inline-block;
-            margin-right: 15px;
-        }
-
-        .nav-link {
-            color: #007bff;
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        @media (max-width: 767px) {
-            .navbar-nav {
-                text-align: center;
-            }
-
-            .nav-item {
-                display: block;
-                margin: 10px 0;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 </head>
 <body>
-<div class="navbar">
-    <a class="navbar-brand" href="/orders/new_order">Navigation</a>
-    <button class="navbar-toggler" type="button" id="navbarToggle">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="navbar-nav" id="navbarNav">
-        <ul>
-            <li class="nav-item">
-                <a class="nav-link" href="/products">Products</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/orders">Orders</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/groups">Groups</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/statistic">Statistic</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/users">Users</a>
-            </li>
+<div th:fragment="head">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
 
-            <li class="nav-item">
-                <a class="nav-link" href="/logout">Logout</a>
-            </li>
-        </ul>
+    <a class="navbar-brand" th:href="${'/orders/new_order'}">Navigation</a>
+    <div  id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" th:href="${'/products'}">Products</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" th:href="${'/orders'}">Orders</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" th:href="${'/groups'}">Groups</a>
+        </li>
+        <div sec:authorize="hasRole('ROLE_ADMIN')">
+          <li class="nav-item">
+            <a class="nav-link" th:href="${'/statistic'}">Statistic</a>
+          </li>
+        </div>
+        <div sec:authorize="hasRole('ROLE_ADMIN')">
+          <li class="nav-item">
+            <a class="nav-link" th:href="${'/users'}">Users</a>
+          </li>
+        </div>
+        <li class="nav-item">
+          <a class="nav-link" th:href="${'/logout'}">Logout</a>
+        </li>
+      </ul>
     </div>
+  </nav>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script>
-    // JavaScript для обработки нажатия на кнопку бургер-меню
-    $(document).ready(function () {
-        $('#navbarToggle').click(function () {
-            $('#navbarNav').slideToggle();
-        });
-    });
-</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 </body>
 </html>
