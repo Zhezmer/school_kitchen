@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Mevoot application</title>
-<!--  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">-->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <style>
@@ -47,7 +47,7 @@
 
 <div th:fragment="head">
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="/orders/new_order">Navigation</a>
+    <a class="navbar-brand" th:href="@{/orders/new_order}">Navigation</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -56,32 +56,32 @@
       <ul class="navbar-nav ml-auto">
         <div class="sidebar-items">
           <li class="nav-item">
-            <a class="nav-link" href="/products">Products</a>
-          </li>
-        </div>
-        <div class="sidebar-items">
-          <li class="nav-item" >
-            <a class="nav-link" href="/orders">Orders</a>
-          </li>
-        </div>
-        <div class="sidebar-items">
-          <li class="nav-item" >
-            <a class="nav-link" href="/groups">Groups</a>
+            <a class="nav-link" th:href="@{/products}">Products</a>
           </li>
         </div>
         <div class="sidebar-items">
           <li class="nav-item">
-            <a class="nav-link" href="/statistic">Statistic</a>
+            <a class="nav-link" th:href="@{/orders}">Orders</a>
           </li>
         </div>
         <div class="sidebar-items">
           <li class="nav-item">
-            <a class="nav-link" href="/users">Users</a>
+            <a class="nav-link" th:href="@{/groups}">Groups</a>
+          </li>
+        </div>
+        <div sec:authorize="hasRole('ROLE_ADMIN')" class="sidebar-items">
+          <li class="nav-item">
+            <a class="nav-link" th:href="@{/statistic}">Statistic</a>
+          </li>
+        </div>
+        <div sec:authorize="hasRole('ROLE_ADMIN')" class="sidebar-items">
+          <li class="nav-item">
+            <a class="nav-link" th:href="@{/users}">Users</a>
           </li>
         </div>
         <div class="sidebar-items">
-          <li class="nav-item" >
-            <a class="nav-link" href="/logout">Logout</a>
+          <li class="nav-item">
+            <a class="nav-link" th:href="@{/logout}">Logout</a>
           </li>
         </div>
       </ul>
@@ -89,12 +89,12 @@
 
     <!-- Sidebar -->
     <div class="sidebar">
-      <a href="#" onclick="toggleSidebar()">Products</a>
-      <a href="#" onclick="toggleSidebar()">Orders</a>
-      <a href="#" onclick="toggleSidebar()">Groups</a>
-      <a href="#" onclick="toggleSidebar()">Statistic</a>
-      <a href="#" onclick="toggleSidebar()">Users</a>
-      <a href="#" onclick="toggleSidebar()">Logout</a>
+      <a th:href="@{/products}" onclick="toggleSidebar()">Products</a>
+      <a th:href="@{/orders}"  onclick="toggleSidebar()">Orders</a>
+      <a th:href="@{/groups}"  onclick="toggleSidebar()">Groups</a>
+      <a th:href="@{/statistic}"  onclick="toggleSidebar()">Statistic</a>
+      <a th:href="@{/users}" onclick="toggleSidebar()">Users</a>
+      <a th:href="@{/logout}" onclick="toggleSidebar()">Logout</a>
     </div>
   </nav>
 </div>
