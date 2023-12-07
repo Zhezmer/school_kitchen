@@ -6,38 +6,38 @@
     <div th:replace = "~{headers/bootstrap :: boot}"></div>
 </head>
 <body>
-<!--<div class="container">-->
-<!--    <div th:replace = "~{headers/header :: head}"></div>-->
-<!--    <h2>הזמנה</h2>-->
-<!--    <div>-->
-<!--        <h3 th:text="${order.group.name}"></h3>-->
-<!--    </div>-->
-<!--    <div>-->
-<!--        <a>תאריך יצירה</a>-->
-<!--        <h3 th:text="${order.creationDate}"> </h3>-->
-<!--    </div>-->
-<!--    <div>-->
-<!--        <a>תאריך מתרה</a>-->
-<!--        <h3 th:text="${order.orderDateTo}"> </h3>-->
-<!--    </div>-->
-<!--    <table class="table table-striped">-->
-<!--        <tbody>-->
-<!--        <tr th:each="item : ${items}">-->
-<!--            <td th:text="${item.product.name}"></td>-->
-<!--            <td th:text="${item.measure}"></td>-->
-<!--            <td th:text="${item.qty}"></td>-->
-<!--        </tr>-->
-<!--        </tbody>-->
-<!--    </table>-->
-<!--    <a style=" width: 150px" class="btn btn-secondary" th:href="${'/orders/groupOrders/' + order.group.name}">לחזור</a>-->
-<!--    <th:block th:if="${!order.getSent()}">-->
-<!--        <a style="margin-left: 2px" class="btn btn-warning" th:href="${'/orders/' + order.id + '/edit'}">לערוך</a>-->
-<!--        <a style="margin-left: 2px" class="btn btn-success" th:href="${'/orders/' + order.id + '/xlsx'}">לשלוח</a>-->
-<!--    </th:block>-->
-<!--    <th:block th:unless="${!order.getSent()}">-->
-<!--        <p style="margin-top: 15px" class="btn btn-info">הזמנה נשלחה</p>-->
-<!--    </th:block>-->
-<!--</div>-->
+<div class="container">
+    <div th:replace = "~{headers/header :: head}"></div>
+    <h2>הזמנה</h2>
+    <div>
+        <h3 th:text="${order.group.name}"></h3>
+    </div>
+    <div>
+        <a>תאריך יצירה</a>
+        <h3 th:text="${order.creationDate}"> </h3>
+    </div>
+    <div>
+        <a>תאריך מתרה</a>
+        <h3 th:text="${order.orderDateTo}"> </h3>
+    </div>
+    <table class="table table-striped">
+        <tbody>
+        <tr th:each="item : ${items}">
+            <td th:text="${item.product.name}"></td>
+            <td th:text="${item.measure}"></td>
+            <td th:text="${item.qty}"></td>
+        </tr>
+        </tbody>
+    </table>
+    <a style=" width: 150px" class="btn btn-secondary" th:href="${'/orders/groupOrders/' + order.group.name}">לחזור</a>
+    <th:block th:if="${!order.getSent()}">
+        <a style="margin-left: 2px" class="btn btn-warning" th:href="${'/orders/' + order.id + '/edit'}">לערוך</a>
+        <a style="margin-left: 2px" class="btn btn-success" th:href="${'/orders/' + order.id + '/xlsx'}">לשלוח</a>
+    </th:block>
+    <th:block th:unless="${!order.getSent()}">
+        <p style="margin-top: 15px" class="btn btn-info">הזמנה נשלחה</p>
+    </th:block>
+</div>
 
 </body>
 </html>
