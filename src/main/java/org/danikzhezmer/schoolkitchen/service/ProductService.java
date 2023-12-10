@@ -28,7 +28,12 @@ public class ProductService {
     public Product save(Product product) {
         return productRepository.save(product);
     }
-    public void deleteById(Long id){
-        productRepository.deleteById(id);
+
+    public Product findByName(String name){
+        return productRepository.findByName(name);
+    }
+    public void markOutOfStock(Product product){
+        product.setInStock(false);
+        productRepository.save(product);
     }
 }

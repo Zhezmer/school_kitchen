@@ -7,13 +7,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 
-
-
 @Controller
 @RequestMapping("/products")
 public class ProductController {
 
-   private final ProductService productService;
+    private final ProductService productService;
 
     public ProductController(ProductService productService) {
         this.productService = productService;
@@ -31,6 +29,7 @@ public class ProductController {
         model.addAttribute("products", productService.findAll());
         return "product/product_list";
     }
+
     @GetMapping("/new_product")
     public String newProductForm(Model model) {
         model.addAttribute("product", new Product());
@@ -39,13 +38,23 @@ public class ProductController {
 
     @PostMapping("/new_product")
     public String submitForm(@ModelAttribute Product product, Model model) {
-        model.addAttribute("product", product);
-        productService.save(product);
+
+        Product existingProduct = productService.findByName(product.getName());
+
+        if (existingProduct == null) {
+            productService.save(product);
+        } else {
+            existingProduct.setInStock(true);
+            productService.save(existingProduct);
+        }
+
         return "redirect:/products";
     }
-    @DeleteMapping("/{productId}/delete")
+
+    @GetMapping("/{productId}/delete")
     public String deleteProduct(@PathVariable Long productId) {
-        productService.deleteById(productId);
+        Product product = productService.findById(productId);
+        productService.markOutOfStock(product);
         return "redirect:/products";
     }
 

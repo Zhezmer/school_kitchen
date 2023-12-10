@@ -43,7 +43,7 @@ public class SchoolGroupController {
         schoolGroupService.save(group);
         return "redirect:/groups";
     }
-    @DeleteMapping("/{groupId}/delete")
+    @GetMapping("/{groupId}/delete")
     public String deleteGroup(@PathVariable Long groupId) {
        schoolGroupService.deleteById(groupId);
         return "redirect:/groups";

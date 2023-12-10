@@ -69,7 +69,7 @@ public class OrderMailSenderService {
         MimeMessageHelper helper = new MimeMessageHelper(message, true);
 
         helper.setFrom("schoolapp.mevoot@gmail.com");
-        helper.setTo("d.zhezmer@gmail.com");
+        helper.setTo("giladmental@mevoot-eron.com");
         helper.setSubject("Batch unsent orders");
 
         StringBuilder text = new StringBuilder("List of unsent orders:\n");
@@ -95,7 +95,7 @@ public class OrderMailSenderService {
         MimeMessageHelper helper = new MimeMessageHelper(message, true);
 
         helper.setFrom("schoolapp.mevoot@gmail.com");
-        helper.setTo("d.zhezmer@gmail.com");
+        helper.setTo("giladmental@mevoot-eron.com");
         helper.setSubject("Weekly Statistics Report");
 
         StringBuilder text = new StringBuilder("Weekly Statistics Report:\n");

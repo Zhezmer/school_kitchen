@@ -83,7 +83,9 @@
                 <th:block th:unless="${!order.getSent()}">
                     <p style="margin-top: 13px" class="btn btn-info">הזמנה נשלחה</p>
                 </th:block>
-                <a style="margin-left: 2px; margin-bottom: 3px" class="btn btn-danger" th:href="${'/orders/' + order.id + '/delete'}">למחוק</a>
+                <div sec:authorize="hasRole('ROLE_ADMIN')">
+                    <a style="margin-left: 2px; margin-bottom: 3px" class="btn btn-danger" th:href="${'/orders/' + order.id + '/delete'}">למחוק</a>
+                </div>
 
             </div>
         </td>

@@ -11,9 +11,6 @@ public interface KitchenOrderRepository  extends JpaRepository<KitchenOrder, Lon
     KitchenOrder findKitchenOrderById(Long id);
     List<KitchenOrder> findKitchenOrderByGroupName(String groupName);
 
-    List<KitchenOrder> findByGroupNameAndCreationDateBetween(String groupName, LocalDate startDate, LocalDate endDate);
-
-
     List<KitchenOrder> findAllByIsSent(Boolean isSent);
 
 
