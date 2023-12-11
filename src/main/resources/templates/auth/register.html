@@ -18,16 +18,14 @@
                     <div class="col-md-6">
                         <label class="form-label" for="inputUsername"><b>שם משתמש</b></label>
                         <div class="input-group">
-                            <input type="text" th:field="*{username}" id="inputUsername" class="form-control"
-                                   placeholder="תכניסו שם משתמש">
+                            <input type="text" th:field="*{username}" id="inputUsername" class="form-control">
                         </div>
                         <span class="text-danger" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></span>
                     </div>
                     <div class="col-md-6">
                         <label class="form-label" for="inputPassword"><b>סיסמה</b></label>
                         <div class="input-group">
-                            <input type="password" th:field="*{password}" id="inputPassword" class="form-control"
-                                   placeholder="תכניסו סיסמה">
+                            <input type="password" th:field="*{password}" id="inputPassword" class="form-control">
                         </div>
                         <span class="text-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
                     </div>
@@ -37,16 +35,14 @@
                     <div class="col-md-6">
                         <label class="form-label" for="inputFirstName"><b>שם</b></label>
                         <div class="input-group">
-                            <input type="text" th:field="*{firstName}" id="inputFirstName" class="form-control"
-                                   placeholder="תכניסו שם">
+                            <input type="text" th:field="*{firstName}" id="inputFirstName" class="form-control">
                         </div>
                         <span class="text-danger" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></span>
                     </div>
                     <div class="col-md-6">
                         <label class="form-label" for="inputLastName"><b>שם משפחה</b></label>
                         <div class="input-group">
-                            <input type="text" th:field="*{lastName}" id="inputLastName" class="form-control"
-                                   placeholder="תכניסו שם משפחה">
+                            <input type="text" th:field="*{lastName}" id="inputLastName" class="form-control">
                         </div>
                         <span class="text-danger" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></span>
                     </div>
@@ -56,16 +52,14 @@
                     <div class="col-md-6">
                         <label class="form-label" for="inputPhoneNumber"><b>מספר טלפון</b></label>
                         <div class="input-group">
-                            <input type="text" th:field="*{phoneNumber}" id="inputPhoneNumber" class="form-control"
-                                   placeholder="תכניסו מספר טלפון">
+                            <input type="text" th:field="*{phoneNumber}" id="inputPhoneNumber" class="form-control">
                         </div>
                         <span class="text-danger" th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}"></span>
                     </div>
                     <div class="col-md-6">
                         <label class="form-label" for="inputPersonalId"><b>ת.ז.</b></label>
                         <div class="input-group">
-                            <input type="text" th:field="*{personalId}" id="inputPersonalId" class="form-control"
-                                   placeholder="תכניסו ת.ז.">
+                            <input type="text" th:field="*{personalId}" id="inputPersonalId" class="form-control">
                         </div>
                         <span class="text-danger" th:if="${#fields.hasErrors('personalId')}" th:errors="*{personalId}"></span>
                     </div>
@@ -74,8 +68,7 @@
                     <div class="col-md-6">
                         <label class="form-label" for="inputEmail"><b>דואר אלקטרוני</b></label>
                         <div class="input-group">
-                            <input type="text" th:field="*{email}" id="inputEmail" class="form-control"
-                                   placeholder="תכניסו E-mail">
+                            <input type="text" th:field="*{email}" id="inputEmail" class="form-control">
                         </div>
                         <span class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
                     </div>
@@ -93,7 +86,7 @@
     <div class="row justify-content-center">
         <div class="col-6 text-center">
             <!-- Обработка ошибки входа -->
-            <span class="text-danger" th:if="${param.error}">שם משתמש או סיסמא שגוי</span>
+            <span class="text-danger" th:if="${param.error}">שם משתמש או סיסמה שגוי</span>
         </div>
     </div>
 
