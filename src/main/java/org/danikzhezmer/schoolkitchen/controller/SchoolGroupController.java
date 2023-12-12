@@ -22,7 +22,7 @@ public class SchoolGroupController {
     @GetMapping("/{id}")
     public String getGroup(@PathVariable("id") Long id, Model model) {
         model.addAttribute("group", schoolGroupService.findById(id));
-        return "/group/group_card";
+        return "group/group_card";
     }
 
     @GetMapping

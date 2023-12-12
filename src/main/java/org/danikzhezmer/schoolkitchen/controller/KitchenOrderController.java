@@ -41,7 +41,7 @@ public class KitchenOrderController {
     public String getOrder(@PathVariable("id") Long id, Model model) {
         model.addAttribute("order", kitchenOrderService.findById(id));
         model.addAttribute("items", kitchenOrderItemService.findAllByKitchenOrderId(id));
-        return "/order/order_card";
+        return "order/order_card";
     }
 
     @GetMapping
@@ -98,7 +98,7 @@ public class KitchenOrderController {
             model.addAttribute("products", products);
 
             model.addAttribute("order", dto);
-            return "/order/new_order";
+            return "order/new_order";
         }
     }
 
