@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Mevoot application</title>
-    <div th:replace = "~{headers/bootstrap :: boot}"></div>
+    <div th:replace="~{headers/bootstrap :: boot}"></div>
     <link rel="stylesheet" th:href="@{https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -72,24 +72,27 @@
 <div class="container">
     <h2 th:text="${groupName}"> הזמנות</h2>
     <table>
-    <tr th:each="order : ${group_orders}">
-        <td th:text="${order.creationDate}"></td>
-        <td>
-            <div>
-                <a style="margin-left: 35px; margin-bottom: 3px" class="btn btn-primary" th:href="${'/orders/' + order.id}">ל הזמנה</a>
-                <th:block th:if="${!order.getSent()}">
-                    <a style="margin-left: 2px" class="btn btn-warning" th:href="${'/orders/' + order.id + '/edit'}">לערוך</a>
-                </th:block>
-                <th:block th:unless="${!order.getSent()}">
-                    <p style="margin-top: 13px" class="btn btn-info">הזמנה נשלחה</p>
-                </th:block>
-                <div sec:authorize="hasRole('ROLE_ADMIN')">
-                    <a style="margin-left: 2px; margin-bottom: 3px" class="btn btn-danger" th:href="${'/orders/' + order.id + '/delete'}">למחוק</a>
-                </div>
+        <tr th:each="order : ${group_orders}">
+            <td th:text="${order.creationDate}"></td>
+            <td>
+                <div>
+                    <a style="margin-left: 35px; margin-bottom: 3px" class="btn btn-primary"
+                       th:href="${'/orders/' + order.id}">ל הזמנה</a>
+                    <th:block th:if="${!order.getSent()}">
+                        <a style="margin-left: 2px" class="btn btn-warning"
+                           th:href="${'/orders/' + order.id + '/edit'}">לערוך</a>
+                    </th:block>
+                    <th:block th:unless="${!order.getSent()}">
+                        <p style="margin-top: 13px" class="btn btn-info">הזמנה נשלחה</p>
+                    </th:block>
 
-            </div>
-        </td>
-    </tr>
+                    <a sec:authorize="hasRole('ROLE_ADMIN')" style="margin-left: 2px; margin-bottom: 3px"
+                       class="btn btn-danger" th:href="${'/orders/' + order.id + '/delete'}">למחוק</a>
+
+
+                </div>
+            </td>
+        </tr>
     </table>
     <a style="margin: 20px 2px 20px 0" class="btn btn-success" th:href="${'/orders/new_order'}">הזמנה חדשה</a>
     <a style="margin: 20px 20px 20px 0" class="btn btn-secondary" href="/orders">לחזור</a>

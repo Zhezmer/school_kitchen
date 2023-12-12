@@ -69,6 +69,7 @@
     </nav>
 </div>
 
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" defer></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" defer></script>
@@ -115,14 +116,13 @@
                         <label>
                             <select class="form-control" name="measures" required>
                                 <option value="" disabled selected>לבחור יחידה</option>
-                                <option value="штуки" th:selected="${item.measure == 'unit'}">יחידה</option>
-                                <option value="кг" th:selected="${item.measure == 'kg'}">קילו</option>
-                                <option value="литры" th:selected="${item.measure == 'liter'}">ליטר</option>
+                                <option value="штуки" th:selected="${item.measure == 'יחידה'}">יחידה</option>
+                                <option value="литры" th:selected="${item.measure == 'ליטר'}">ליטר</option>
                             </select>
                         </label>
                         <!--                        <input class="form-control" type="text" name="measures" placeholder="Единица измерения" th:value="${item.measure}" required>-->
                         <label>
-                            <input class="form-control" type="number" name="qtys" placeholder="quantity" th:value="${item.qty}" required>
+                            <input class="form-control" type="number" name="qtys" placeholder="כמות" th:value="${item.qty}" required>
                         </label>
                         <button type="button" class="btn btn-danger removeProductButton" th:data-product-group="'productGroup' + ${iter.index}">למחוק</button>
                     </div>
@@ -152,17 +152,16 @@
                         let productFieldsHtml = `
                             <div id="productGroup${productCount}">
                                 <select class="form-control" name="productIds" required>
-                                    <option value="">Choose product</option>
+                                    <option value="">לבחור מוצר</option>
                                     ${productOptions}
                                     <!-- Здесь вы можете использовать цикл Thymeleaf для заполнения опций продуктов -->
                                 </select>
                                 <select class="form-control" name="measures" required>
-                                   <option value="">Choose unit of measure</option>
-                                     <option value="יחידות">unit</option>
-                                     <option value="קילו" >kg</option>
-                                     <option value="ליטר">liter</option>
+                                   <option value="">לבחור יחידה</option>
+                                     <option value="יחידות">יחידות</option>
+                                     <option value="ליטר">ליטר</option>
                                  </select>
-                                <input class="form-control" type="number" name="qtys" placeholder="quantity" required>
+                                <input class="form-control" type="number" name="qtys" placeholder="יחידות" required>
                                 <button type="button" class="btn btn-danger removeProductButton" data-product-group="productGroup${productCount}">Delete</button>
                             </div>
                         `;

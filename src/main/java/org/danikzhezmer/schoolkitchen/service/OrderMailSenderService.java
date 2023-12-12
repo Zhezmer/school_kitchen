@@ -45,7 +45,7 @@ public class OrderMailSenderService {
         MimeMessageHelper helper = new MimeMessageHelper(message, true);
 
         helper.setFrom("schoolapp.mevoot@gmail.com");
-        helper.setTo("d.zhezmer@gmail.com");
+        helper.setTo("giladmental@mevoot-eron.com");
         helper.setSubject("order");
         helper.setText("some text");
 
