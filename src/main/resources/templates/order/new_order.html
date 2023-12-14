@@ -91,6 +91,7 @@
                     <label class="col-sm-2 control-label">קבוצה</label>
                     <div class="col-sm-10">
                         <select class="form-control" th:field="*{groupId}">
+                            <option value="">לבחור את הקבוצה</option>
                             <option th:each="group : ${groups}" th:text="${group.name}" th:value="${group.id}"></option>
                         </select>
                     </div>
