@@ -3,18 +3,19 @@ package org.danikzhezmer.schoolkitchen.service;
 
 import jakarta.transaction.Transactional;
 import org.danikzhezmer.schoolkitchen.dto.KitchenOrderDto;
-import org.danikzhezmer.schoolkitchen.entity.KitchenOrder;
-import org.danikzhezmer.schoolkitchen.entity.KitchenOrderItem;
-import org.danikzhezmer.schoolkitchen.entity.Product;
-import org.danikzhezmer.schoolkitchen.entity.SchoolGroup;
+import org.danikzhezmer.schoolkitchen.entity.*;
 
 import org.danikzhezmer.schoolkitchen.repository.KitchenOrderItemRepository;
 import org.danikzhezmer.schoolkitchen.repository.KitchenOrderRepository;
 import org.danikzhezmer.schoolkitchen.repository.ProductRepository;
 import org.danikzhezmer.schoolkitchen.repository.SchoolGroupRepository;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 
+import java.net.Authenticator;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -27,6 +28,8 @@ public class KitchenOrderService {
 
     private final ProductRepository productRepository;
 
+
+
     public KitchenOrderService(KitchenOrderRepository kitchenOrderRepository, KitchenOrderItemRepository kitchenOrderItemRepository, SchoolGroupRepository schoolGroupRepository, ProductRepository productRepository) {
         this.kitchenOrderRepository = kitchenOrderRepository;
         this.kitchenOrderItemRepository = kitchenOrderItemRepository;
@@ -37,6 +40,7 @@ public class KitchenOrderService {
     @Transactional
     public void save(KitchenOrderDto dto) {
         SchoolGroup group = schoolGroupRepository.findById(dto.getGroupId()).orElse(null);
+
         KitchenOrder kitchenOrder = dto.getOrderId() == null
                 ? new KitchenOrder()
                 : kitchenOrderRepository.findKitchenOrderById(dto.getOrderId());
@@ -45,6 +49,7 @@ public class KitchenOrderService {
         kitchenOrder.setOrderDateTo(dto.getOrderDateTo());
         kitchenOrder.setGroup(group);
         kitchenOrder.setSent(false);
+        kitchenOrder.setUserName(getNameofUsername());
 
         KitchenOrder savedOrder = kitchenOrderRepository.save(kitchenOrder);
 
@@ -89,6 +94,19 @@ public class KitchenOrderService {
 
     public List<KitchenOrder> findNotSentOrders(){
         return kitchenOrderRepository.findAllByIsSent(false);
+    }
+
+    public String getNameofUsername(){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if(authentication != null && authentication.isAuthenticated()){
+          Object principal = authentication.getPrincipal();
+            UserDetails userDetails = (UserDetails) principal;
+            String firstName = ((User)userDetails).getFirstName();
+            String lastName = ((User)userDetails).getLastName();
+            return firstName + " " + lastName;
+        }else {
+            return "User not authenticated";
+        }
     }
 
 }

@@ -26,9 +26,11 @@ public class OrderToExcelService {
             LoggerFactory.getLogger(OrderToExcelService.class);
 
     private final KitchenOrderItemRepository kitchenOrderItemRepository;
+    private final KitchenOrderService kitchenOrderService;
 
-    public OrderToExcelService(KitchenOrderItemRepository kitchenOrderItemRepository) {
+    public OrderToExcelService(KitchenOrderItemRepository kitchenOrderItemRepository, KitchenOrderService kitchenOrderService) {
         this.kitchenOrderItemRepository = kitchenOrderItemRepository;
+        this.kitchenOrderService = kitchenOrderService;
     }
 
     public String generate(KitchenOrder order) {
@@ -53,21 +55,27 @@ public class OrderToExcelService {
         sheet.autoSizeColumn(0);
         sheet.autoSizeColumn(1);
 
-        Cell cellNameExecute = row1.createCell(2);
-        cellNameExecute.setCellValue("To execute:");
-        Cell orderDateTo = row1.createCell(3);
+
+        Row row2 = sheet.createRow(2);
+        Cell toExecute = row2.createCell(0);
+        toExecute.setCellValue("To execute:");
+        Cell orderDateTo = row2.createCell(1);
         orderDateTo.setCellStyle(dateStyle);
         orderDateTo.setCellValue(order.getOrderDateTo());
         sheet.autoSizeColumn(2);
         sheet.autoSizeColumn(3);
 
-        Row headerRow = sheet.createRow(2);
+        Row orderedBy = sheet.createRow(3);
+        orderedBy.createCell(0).setCellValue("Ordered by: ");
+        orderedBy.createCell(1).setCellValue(kitchenOrderService.getNameofUsername());
+
+        Row headerRow = sheet.createRow(4);
         headerRow.createCell(0).setCellValue("Product Name");
         sheet.autoSizeColumn(0);
         headerRow.createCell(1).setCellValue("Measure");
         headerRow.createCell(2).setCellValue("Quantity");
 
-        int rowNum = 3;
+        int rowNum = 5;
         for (KitchenOrderItem orderItem : orderItems) {
             Row orderRow = sheet.createRow(rowNum++);
             orderRow.createCell(0).setCellValue(orderItem.getProduct().getName());
@@ -84,4 +92,5 @@ public class OrderToExcelService {
         }
         return fileName;
     }
+
 }

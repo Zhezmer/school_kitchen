@@ -19,23 +19,23 @@ public class User implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotEmpty(message = "Поле Имя пользователя не должно быть пустым")
+    @NotEmpty(message = "לא יכול להיות ריק")
     private String username;
-    @NotEmpty(message = "Поле пароль не должно быть пустым")
+    @NotEmpty(message = "לא יכול להיות ריק")
     private String password;
-    @NotEmpty(message = "Поле Имя не должно быть пустым")
+    @NotEmpty(message = "לא יכול להיות ריק")
     private String firstName;
-    @NotEmpty(message = "Поле Фамилия не должно быть пустым")
+    @NotEmpty(message = "לא יכול להיות ריק")
     private String lastName;
 
-    @Email(message = "Неверный формат Email")
-    @NotEmpty(message = "Поле email не должно быть пустым")
+    @Email(message = "פורמט לא מתאים")
+    @NotEmpty(message = "לא יכול להיות ריק")
     private String email;
 
-    @NotEmpty(message = "Поле не должно быть пустым")
+    @NotEmpty(message = "לא יכול להיות ריק")
     private String personalId;
 
-    @NotEmpty(message = "Поле не должно быть пустым")
+    @NotEmpty(message = "לא יכול להיות ריק")
     private String phoneNumber;
 
     @ManyToOne

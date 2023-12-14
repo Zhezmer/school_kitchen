@@ -29,14 +29,16 @@ public class KitchenOrder {
 
     private Boolean isSent;
 
+    private String userName;
 
-    public KitchenOrder(Long id, SchoolGroup group, List<KitchenOrderItem> kitchenOrderItems, LocalDate creationDate, LocalDate orderDateTo) {
+
+    public KitchenOrder(Long id, SchoolGroup group, List<KitchenOrderItem> kitchenOrderItems, LocalDate creationDate, LocalDate orderDateTo, String userName) {
         this.id = id;
         this.group = group;
         this.creationDate = creationDate;
         this.orderDateTo = orderDateTo;
         this.kitchenOrderItems = kitchenOrderItems;
-
+       this.userName = userName;
     }
 
     public KitchenOrder() {
@@ -86,6 +88,14 @@ public class KitchenOrder {
 
     public void setSent(Boolean sent) {
         isSent = sent;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     @Override

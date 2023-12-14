@@ -47,7 +47,7 @@ public class OrderMailSenderService {
         helper.setFrom("schoolapp.mevoot@gmail.com");
         helper.setTo("giladmental@mevoot-eron.com");
         helper.setSubject("order");
-        helper.setText("some text");
+        helper.setText("הערה: ");
 
         File orderFile = new File(filename);
         FileSystemResource file
@@ -55,7 +55,7 @@ public class OrderMailSenderService {
         helper.addAttachment(orderFile.getName(), file);
         emailSender.send(message);
         kitchenOrderService.markAsSent(order);
-        log.info("email send");
+        log.info("email sent");
     }
 
     @Scheduled(cron = "0 0 20 * * SUN-THU")
