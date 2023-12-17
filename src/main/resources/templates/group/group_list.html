@@ -91,7 +91,7 @@
         </tr>
         </tbody>
     </table>
-    <a class="btn btn-success" th:href="${'/groups/new_group'}">קבוצה חדשה</a>
+    <a sec:authorize="hasRole('ROLE_ADMIN')" class="btn btn-success" th:href="${'/groups/new_group'}">קבוצה חדשה</a>
 </div>
 </body>
 </html>
